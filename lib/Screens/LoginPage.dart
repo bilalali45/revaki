@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:revaki/Screens/HomePage.dart';
 import 'package:revaki/constants/bezierContainer.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _HomePageState extends State<LoginPage> {
                         SizedBox(height: height * .2),
                         Text(
                           "Revaki Pos",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                         ),
                         SizedBox(height: 50),
                            _emailPasswordWidget(),
@@ -72,8 +73,13 @@ Widget _submitButton() {
 
   return GestureDetector(
       onTap: () {
-        // MaterialPageRoute(builder: (context) => HomeScreen());
-        showInSnackBar("test",contxt);
+        // MaterialPageRoute(builder: (context) => HomePage());
+        // showInSnackBar("test",contxt);
+        Navigator.push(
+            contxt, MaterialPageRoute(builder: (context) => HomePage())
+
+        );
+
 
       },
       child: Container(

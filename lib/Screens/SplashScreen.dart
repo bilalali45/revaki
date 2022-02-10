@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:revaki/Screens/LoginPage.dart';
-
 import '../constants/assests_image.dart';
+import 'package:revaki/Screens/LoginPage.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -20,7 +18,7 @@ class SplashScreen extends StatelessWidget {
      title: "MoonLight",
       home: Container(
         decoration:new BoxDecoration(
-            image:  new DecorationImage(
+              image:  new DecorationImage(
               image: new AssetImage(background),
               fit: BoxFit.cover,)
         ),
@@ -28,9 +26,7 @@ class SplashScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
       ),
-
-
-     );
+    );
    }
 
 }

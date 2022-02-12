@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
@@ -5,6 +9,7 @@ import 'package:revaki/widgets/BottomNavBarWidget.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +22,15 @@ final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
 var contxt;
 
 class _HomePageState extends State<HomePage> {
+  Dio _dio = Dio();
+  Response? response;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getData();
+  }
   @override
   Widget build(BuildContext context) {
     contxt = context;
@@ -92,4 +106,27 @@ class _HomePageState extends State<HomePage> {
 
     );
   }
+
+
+
+  void _getData() async{
+    // FormData _formData;
+    // _formData = FormData.fromMap({
+    //   "token"
+    //   ""
+    // });
+
+
+
+    Map<String,dynamic?> mapData = {
+      "PlaceId":"2bec1011-305d-4324-91ae-34ff8e589764",
+      "Token":"E98AB1D527475185DD0D7B35CEFB8D72"
+    };
+    response = await _dio.post("http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",data: jsonEncode(mapData));
+
+    log("Response:"+response?.data);
+  }
+
+
+
 }

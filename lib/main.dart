@@ -19,6 +19,12 @@ class MyApp extends StatelessWidget {
 }
 
 
+//
+// static String serviceURL = "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com";
+//
+// objreq.put("PlaceId", PlaceId);
+// objreq.put("Token", getToken());
+
 
   // This widget is the root of your application.
   // @override

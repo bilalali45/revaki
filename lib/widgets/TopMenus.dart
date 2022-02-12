@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revaki/constants/assests_image.dart';
 
 class TopMenus extends StatefulWidget {
   @override
@@ -13,14 +14,14 @@ class _TopMenusState extends State<TopMenus> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
-          TopMenuTiles(name: "Pizza", imageUrl: "ic_pizza", slug: ""),
-          TopMenuTiles(name: "Cake", imageUrl: "ic_cake", slug: ""),
-          TopMenuTiles(name: "Ice Cream", imageUrl: "ic_ice_cream", slug: ""),
-          TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", slug: ""),
-          TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
+          TopMenuTiles(name: "Burger", imageUrl: d1, slug: ""),
+          TopMenuTiles(name: "Sushi", imageUrl:   d1, slug: ""),
+          TopMenuTiles(name: "Pizza", imageUrl:   d1, slug: ""),
+          TopMenuTiles(name: "Cake", imageUrl: d1, slug: ""),
+          TopMenuTiles(name: "Ice Cream", imageUrl: d1, slug: ""),
+          TopMenuTiles(name: "Soft Drink", imageUrl: d1, slug: ""),
+          TopMenuTiles(name: "Burger", imageUrl: d1, slug: ""),
+          TopMenuTiles(name: "Sushi", imageUrl: d1, slug: ""),
         ],
       ),
     );
@@ -66,10 +67,9 @@ class TopMenuTiles extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: Center(
-                      child: Image.asset(
-                    'assets/images/topmenu/' + imageUrl + ".png",
-                    width: 24,
-                    height: 24,
+                      child: Image.asset(imageUrl,
+                        height: double.infinity,
+                        fit: BoxFit.cover, width: double.infinity,
                   )),
                 )),
           ),

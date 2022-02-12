@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revaki/animation/ScaleRoute.dart';
+import 'package:revaki/constants/assests_image.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
@@ -69,7 +70,7 @@ class PopularFoodTiles extends StatelessWidget {
                 ),
                 child: Container(
                   width: 170,
-                  height: 210,
+                  height: 150,
                   child: Column(
                     children: <Widget>[
                       Stack(
@@ -104,12 +105,10 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(
-                              'assets/images/popular_foods/' +
-                                  imageUrl +
-                                  ".png",
-                              width: 130,
-                              height: 140,
+                                child: Image.asset(imageUrl,
+                                    height: 100,
+                                    fit: BoxFit.cover, width: double.infinity,
+
                             )),
                           )
                         ],
@@ -266,63 +265,63 @@ class PopularFoodItems extends StatelessWidget {
       children: <Widget>[
         PopularFoodTiles(
             name: "Fried Egg",
-            imageUrl: "ic_popular_food_1",
+            imageUrl: d1,
             rating: '4.9',
             numberOfRating: '200',
             price: '15.06',
             slug: "fried_egg"),
         PopularFoodTiles(
             name: "Mixed Vegetable",
-            imageUrl: "ic_popular_food_3",
+            imageUrl: d1,
             rating: "4.9",
             numberOfRating: "100",
             price: "17.03",
             slug: ""),
         PopularFoodTiles(
             name: "Salad With Chicken",
-            imageUrl: "ic_popular_food_4",
+            imageUrl: d1,
             rating: "4.0",
             numberOfRating: "50",
             price: "11.00",
             slug: ""),
         PopularFoodTiles(
             name: "Mixed Salad",
-            imageUrl: "ic_popular_food_5",
+            imageUrl: d1,
             rating: "4.00",
             numberOfRating: "100",
             price: "11.10",
             slug: ""),
         PopularFoodTiles(
             name: "Red meat,Salad",
-            imageUrl: "ic_popular_food_2",
+            imageUrl: d1,
             rating: "4.6",
             numberOfRating: "150",
             price: "12.00",
             slug: ""),
         PopularFoodTiles(
             name: "Mixed Salad",
-            imageUrl: "ic_popular_food_5",
+            imageUrl: d1,
             rating: "4.00",
             numberOfRating: "100",
             price: "11.10",
             slug: ""),
         PopularFoodTiles(
             name: "Potato,Meat fry",
-            imageUrl: "ic_popular_food_6",
+            imageUrl: d1,
             rating: "4.2",
             numberOfRating: "70",
             price: "23.0",
             slug: ""),
         PopularFoodTiles(
             name: "Fried Egg",
-            imageUrl: "ic_popular_food_1",
+            imageUrl: d1,
             rating: '4.9',
             numberOfRating: '200',
             price: '15.06',
             slug: "fried_egg"),
         PopularFoodTiles(
             name: "Red meat,Salad",
-            imageUrl: "ic_popular_food_2",
+            imageUrl: d1,
             rating: "4.6",
             numberOfRating: "150",
             price: "12.00",

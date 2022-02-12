@@ -1,5 +1,8 @@
 final String imageAssetsRoot = "Images/";
 final String background = _getImagePath("bg.png");
+final String d1 = _getImagePath("done.jpg");
+
+
 
 
 // https://stackoverflow.com/questions/50186555/how-to-set-margin-for-a-button-in-flutter

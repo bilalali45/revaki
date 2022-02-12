@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/widgets/BottomNavBarWidget.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
+              bottomNavigationBar: BottomNavBarWidget(),
             ),
 
 

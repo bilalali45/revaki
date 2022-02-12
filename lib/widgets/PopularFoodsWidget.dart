@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:revaki/animation/ScaleRoute.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/model/dishmodel.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
+  final List<dishmodelDishList?>? dishModelList;
+  PopularFoodsWidget(this.dishModelList);
   @override
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
 }
@@ -18,7 +21,7 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
         children: <Widget>[
           PopularFoodTitle(),
           Expanded(
-            child: PopularFoodItems(),
+            child: PopularFoodItems(widget.dishModelList),
           )
         ],
       ),
@@ -256,78 +259,23 @@ class PopularFoodTitle extends StatelessWidget {
 }
 
 class PopularFoodItems extends StatelessWidget {
+  List<dishmodelDishList?>? dishModelList;
+  PopularFoodItems(this.dishModelList);
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(20),
-      crossAxisCount: 2,
-      children: <Widget>[
-        PopularFoodTiles(
-            name: "Fried Egg",
+    return GridView.builder(
+      itemCount:dishModelList?.length ?? 0,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return  PopularFoodTiles(
+            name: dishModelList![index]?.DishName ?? "",
             imageUrl: d1,
             rating: '4.9',
             numberOfRating: '200',
             price: '15.06',
-            slug: "fried_egg"),
-        PopularFoodTiles(
-            name: "Mixed Vegetable",
-            imageUrl: d1,
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "17.03",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Salad With Chicken",
-            imageUrl: d1,
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "11.00",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Potato,Meat fry",
-            imageUrl: d1,
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "23.0",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: d1,
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularFoodTiles(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-      ],
-    );
+            slug: "fried_egg");
+      });
   }
 }
 

@@ -1,22 +1,154 @@
+class dishmodelDishListVariantsData {
+/*
+{
+  "Id": "3d5aa801-14a6-4e82-be5e-4b8f4c25951f",
+  "Text": "Breakfast Pizza",
+  "Price": 0,
+  "Maximum": 1,
+  "Minimum": 1
+}
+*/
+
+  String? Id;
+  String? Text;
+  int? Price;
+  int? Maximum;
+  int? Minimum;
+
+  dishmodelDishListVariantsData({
+    this.Id,
+    this.Text,
+    this.Price,
+    this.Maximum,
+    this.Minimum,
+  });
+  dishmodelDishListVariantsData.fromJson(Map<String, dynamic> json) {
+    Id = json['Id']?.toString();
+    Text = json['Text']?.toString();
+    Price = json['Price']?.toInt();
+    Maximum = json['Maximum']?.toInt();
+    Minimum = json['Minimum']?.toInt();
+  }
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['Id'] = Id;
+    data['Text'] = Text;
+    data['Price'] = Price;
+    data['Maximum'] = Maximum;
+    data['Minimum'] = Minimum;
+    return data;
+  }
+}
+
+class dishmodelDishListVariants {
+/*
+{
+  "Id": "F45C1EE6-98B2-4F3F-BD36-61B3DD334F51",
+  "Key": "Flavours",
+  "Title": "Choose Your Flavours",
+  "Description": "Select One",
+  "Type": "SingleChoice",
+  "Required": false,
+  "Data": [
+    {
+      "Id": "3d5aa801-14a6-4e82-be5e-4b8f4c25951f",
+      "Text": "Breakfast Pizza",
+      "Price": 0,
+      "Maximum": 1,
+      "Minimum": 1
+    }
+  ]
+}
+*/
+
+  String? Id;
+  String? Key;
+  String? Title;
+  String? Description;
+  String? Type;
+  bool? Required;
+  List<dishmodelDishListVariantsData?>? Data;
+
+  dishmodelDishListVariants({
+    this.Id,
+    this.Key,
+    this.Title,
+    this.Description,
+    this.Type,
+    this.Required,
+    this.Data,
+  });
+  dishmodelDishListVariants.fromJson(Map<String, dynamic> json) {
+    Id = json['Id']?.toString();
+    Key = json['Key']?.toString();
+    Title = json['Title']?.toString();
+    Description = json['Description']?.toString();
+    Type = json['Type']?.toString();
+    Required = json['Required'];
+    if (json['Data'] != null) {
+      final v = json['Data'];
+      final arr0 = <dishmodelDishListVariantsData>[];
+      v.forEach((v) {
+        arr0.add(dishmodelDishListVariantsData.fromJson(v));
+      });
+      Data = arr0;
+    }
+  }
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['Id'] = Id;
+    data['Key'] = Key;
+    data['Title'] = Title;
+    data['Description'] = Description;
+    data['Type'] = Type;
+    data['Required'] = Required;
+    if (Data != null) {
+      final v = Data;
+      final arr0 = [];
+      v!.forEach((v) {
+        arr0.add(v!.toJson());
+      });
+      data['Data'] = arr0;
+    }
+    return data;
+  }
+}
+
 class dishmodelDishList {
 /*
 {
-  "DishId": "85dbe686-c238-4817-985d-c012c7672d94",
-  "ImageURL": "http://revakipos.com.asp1-101.phx1-1.websitetestlink.com//Images/pos/dish/85dbe686-c238-4817-985d-c012c7672d94.jpeg",
-  "DishName": "Angel Food Cake With Caramel Fluff",
+  "DishId": "dfcbee89-7188-4bca-abce-d4921202b4be",
+  "ImageURL": "http://revakipos.com.asp1-101.phx1-1.websitetestlink.com//Images/pos/dish/dfcbee89-7188-4bca-abce-d4921202b4be.jpeg",
+  "DishName": "Classic Pizza (Large)",
   "BarCode": "123",
-  "InMinut": 15,
-  "InSec": 0,
+  "InMinut": 2,
+  "InSec": 2,
   "WeightInGram": "",
   "Discription": null,
-  "CategoryId": "ab780904-8b47-4bc0-a77e-ad0675eee503",
-  "TotalPrice": 450,
+  "CategoryId": "fa708f5f-c258-4b7f-a592-fe171e67d113",
+  "TotalPrice": 1299,
   "PriceStartFrom": 0,
   "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
   "ApplyGST": true,
   "ApplyDiscount": true,
   "Variants": [
-    null
+    {
+      "Id": "F45C1EE6-98B2-4F3F-BD36-61B3DD334F51",
+      "Key": "Flavours",
+      "Title": "Choose Your Flavours",
+      "Description": "Select One",
+      "Type": "SingleChoice",
+      "Required": false,
+      "Data": [
+        {
+          "Id": "3d5aa801-14a6-4e82-be5e-4b8f4c25951f",
+          "Text": "Breakfast Pizza",
+          "Price": 0,
+          "Maximum": 1,
+          "Minimum": 1
+        }
+      ]
+    }
   ]
 }
 */
@@ -69,8 +201,15 @@ class dishmodelDishList {
     PlaceId = json['PlaceId']?.toString();
     ApplyGST = json['ApplyGST'];
     ApplyDiscount = json['ApplyDiscount'];
-    >>>>>>error<<<<<<
+    if (json['Variants'] != null) {
+      final v = json['Variants'];
+      final arr0 = <dishmodelDishListVariants>[];
+      v.forEach((v) {
+        arr0.add(dishmodelDishListVariants.fromJson(v));
+      });
+      Variants = arr0;
     }
+  }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['DishId'] = DishId;
@@ -87,7 +226,14 @@ class dishmodelDishList {
     data['PlaceId'] = PlaceId;
     data['ApplyGST'] = ApplyGST;
     data['ApplyDiscount'] = ApplyDiscount;
-    >>>>>>error<<<<<<
+    if (Variants != null) {
+      final v = Variants;
+      final arr0 = [];
+      v!.forEach((v) {
+        arr0.add(v!.toJson());
+      });
+      data['Variants'] = arr0;
+    }
     return data;
   }
 }
@@ -97,22 +243,38 @@ class dishmodel {
 {
   "DishList": [
     {
-      "DishId": "85dbe686-c238-4817-985d-c012c7672d94",
-      "ImageURL": "http://revakipos.com.asp1-101.phx1-1.websitetestlink.com//Images/pos/dish/85dbe686-c238-4817-985d-c012c7672d94.jpeg",
-      "DishName": "Angel Food Cake With Caramel Fluff",
+      "DishId": "dfcbee89-7188-4bca-abce-d4921202b4be",
+      "ImageURL": "http://revakipos.com.asp1-101.phx1-1.websitetestlink.com//Images/pos/dish/dfcbee89-7188-4bca-abce-d4921202b4be.jpeg",
+      "DishName": "Classic Pizza (Large)",
       "BarCode": "123",
-      "InMinut": 15,
-      "InSec": 0,
+      "InMinut": 2,
+      "InSec": 2,
       "WeightInGram": "",
       "Discription": null,
-      "CategoryId": "ab780904-8b47-4bc0-a77e-ad0675eee503",
-      "TotalPrice": 450,
+      "CategoryId": "fa708f5f-c258-4b7f-a592-fe171e67d113",
+      "TotalPrice": 1299,
       "PriceStartFrom": 0,
       "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
       "ApplyGST": true,
       "ApplyDiscount": true,
       "Variants": [
-        null
+        {
+          "Id": "F45C1EE6-98B2-4F3F-BD36-61B3DD334F51",
+          "Key": "Flavours",
+          "Title": "Choose Your Flavours",
+          "Description": "Select One",
+          "Type": "SingleChoice",
+          "Required": false,
+          "Data": [
+            {
+              "Id": "3d5aa801-14a6-4e82-be5e-4b8f4c25951f",
+              "Text": "Breakfast Pizza",
+              "Price": 0,
+              "Maximum": 1,
+              "Minimum": 1
+            }
+          ]
+        }
       ]
     }
   ],

@@ -9,6 +9,8 @@ import 'package:revaki/widgets/BottomNavBarWidget.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
+import 'package:revaki/model/dishmodel.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -24,6 +26,7 @@ var contxt;
 class _HomePageState extends State<HomePage> {
   Dio _dio = Dio();
   Response? response;
+  dishmodel? _dishModel;
 
   @override
   void initState() {
@@ -93,7 +96,8 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     //SearchWidget(),
                      TopMenus(),
-                      PopularFoodsWidget(),
+                      _dishModel != null  ?
+                      PopularFoodsWidget(_dishModel?.DishList):CircularProgressIndicator(),
                    // BestFoodWidget(),
                   ],
                 ),
@@ -124,7 +128,16 @@ class _HomePageState extends State<HomePage> {
     };
     response = await _dio.post("http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",data: jsonEncode(mapData));
 
-    log("Response:"+response?.data);
+    //print("Response222:"+response!.data!.toString());
+
+    _dishModel = dishmodel.fromJson(response?.data);
+
+    //log("Print"+_dishModel?.DishList![0].toString())
+
+    setState(() {
+
+    });
+
   }
 
 

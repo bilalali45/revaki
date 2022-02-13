@@ -15,13 +15,14 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
-      width: double.infinity,
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
           PopularFoodTitle(),
           Expanded(
             child: PopularFoodItems(widget.dishModelList),
+             // child: PopularFoodItems(),
           )
         ],
       ),
@@ -72,8 +73,8 @@ class PopularFoodTiles extends StatelessWidget {
                   ),
                 ),
                 child: Container(
-                  width: 170,
-                  height: 150,
+                  width: MediaQuery.of(context).size.height,
+                  height: 340,
                   child: Column(
                     children: <Widget>[
                       Stack(
@@ -108,8 +109,8 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(imageUrl,
-                                    height: 100,
+                                child: Image.network(imageUrl,
+                                    height: 200,
                                     fit: BoxFit.cover, width: double.infinity,
 
                             )),
@@ -236,7 +237,7 @@ class PopularFoodTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      padding: EdgeInsets.only(left: 30, right: 10, top: 50, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -266,17 +267,92 @@ class PopularFoodItems extends StatelessWidget {
     return GridView.builder(
       itemCount:dishModelList?.length ?? 0,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2),
+          crossAxisCount: 4),
       itemBuilder: (BuildContext context, int index) {
         return  PopularFoodTiles(
             name: dishModelList![index]?.DishName ?? "",
-            imageUrl: d1,
+            imageUrl: dishModelList![index]?.ImageURL ?? "",
             rating: '4.9',
             numberOfRating: '200',
-            price: '15.06',
+            price:  dishModelList![index]?.TotalPrice.toString() ?? "",
             slug: "fried_egg");
       });
   }
 }
 
 
+// class PopularFoodItems extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.count(
+//       primary: false,
+//       padding: const EdgeInsets.all(20),
+//       crossAxisCount: 4,
+//       children: <Widget>[
+//         PopularFoodTiles(
+//             name: "Fried Egg",
+//             imageUrl: d1,
+//             rating: '4.9',
+//             numberOfRating: '200',
+//             price: '15.06',
+//             slug: "fried_egg"),
+//         PopularFoodTiles(
+//             name: "Mixed Vegetable",
+//             imageUrl: d1,
+//             rating: "4.9",
+//             numberOfRating: "100",
+//             price: "17.03",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Salad With Chicken",
+//             imageUrl: d1,
+//             rating: "4.0",
+//             numberOfRating: "50",
+//             price: "11.00",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Mixed Salad",
+//             imageUrl: d1,
+//             rating: "4.00",
+//             numberOfRating: "100",
+//             price: "11.10",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Red meat,Salad",
+//             imageUrl: d1,
+//             rating: "4.6",
+//             numberOfRating: "150",
+//             price: "12.00",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Mixed Salad",
+//             imageUrl: d1,
+//             rating: "4.00",
+//             numberOfRating: "100",
+//             price: "11.10",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Potato,Meat fry",
+//             imageUrl: d1,
+//             rating: "4.2",
+//             numberOfRating: "70",
+//             price: "23.0",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Fried Egg",
+//             imageUrl: d1,
+//             rating: '4.9',
+//             numberOfRating: '200',
+//             price: '15.06',
+//             slug: "fried_egg"),
+//         PopularFoodTiles(
+//             name: "Red meat,Salad",
+//             imageUrl: d1,
+//             rating: "4.6",
+//             numberOfRating: "150",
+//             price: "12.00",
+//             slug: ""),
+//       ],
+//     );
+//   }
+// }

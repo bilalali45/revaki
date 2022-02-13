@@ -26,6 +26,7 @@ var contxt;
 class _HomePageState extends State<HomePage> {
   Dio _dio = Dio();
   Response? response;
+  Response? categoryresponse;
   dishmodel? _dishModel;
 
   @override
@@ -91,8 +92,10 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () => _key.currentState!.openDrawer(),
         ),
     ),
+
               body: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     //SearchWidget(),
                      TopMenus(),
@@ -124,12 +127,11 @@ class _HomePageState extends State<HomePage> {
 
     Map<String,dynamic?> mapData = {
       "PlaceId":"2bec1011-305d-4324-91ae-34ff8e589764",
-      "Token":"E98AB1D527475185DD0D7B35CEFB8D72"
+      "Token":"4070D5B30D09D9B89B5ADBB23073ACD9"
     };
     response = await _dio.post("http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",data: jsonEncode(mapData));
 
     //print("Response222:"+response!.data!.toString());
-
     _dishModel = dishmodel.fromJson(response?.data);
 
     //log("Print"+_dishModel?.DishList![0].toString())

@@ -11,8 +11,11 @@ class _TopMenusState extends State<TopMenus> {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
+      width: double.infinity,
+      alignment: Alignment.center,
       child: ListView(
         scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
         children: <Widget>[
           TopMenuTiles(name: "Burger", imageUrl: d1, slug: ""),
           TopMenuTiles(name: "Sushi", imageUrl:   d1, slug: ""),
@@ -45,6 +48,7 @@ class TopMenuTiles extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Column(
+
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
@@ -64,8 +68,8 @@ class TopMenuTiles extends StatelessWidget {
                   ),
                 ),
                 child: Container(
-                  width: 50,
-                  height: 50,
+                  width: 100,
+                  height: 60,
                   child: Center(
                       child: Image.asset(imageUrl,
                         height: double.infinity,

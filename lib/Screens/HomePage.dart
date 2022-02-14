@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/widgets/Alldataset.dart';
 import 'package:revaki/widgets/BottomNavBarWidget.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
@@ -38,16 +39,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     contxt = context;
-
-    final height = MediaQuery.of(context).size.height;
     return WillPopScope(
         onWillPop: () => Future.value(false),
         child: Container(
-            decoration: new BoxDecoration(
-                image: new DecorationImage(
-              image: new AssetImage(background),
-              fit: BoxFit.cover,
-            )),
+          color: Colors.white,
+            // decoration: new BoxDecoration(
+            //     image: new DecorationImage(
+            //   image: new AssetImage(background),
+            //   fit: BoxFit.cover,
+            // )),
             child: Scaffold(
                 key: _key,
                 backgroundColor: Colors.transparent,
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                     children: const <Widget>[
                       DrawerHeader(
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Color.fromRGBO(195, 167, 142,1),
                         ),
                         child: Text(
                           'Drawer Header',
@@ -86,6 +86,7 @@ class _HomePageState extends State<HomePage> {
 
                 ),
                 appBar: new AppBar(
+                  backgroundColor: Color.fromRGBO(195, 167, 142,1),
                    title: Text("Home"),
                   leading: new IconButton(
                   icon: new Icon(Icons.menu),
@@ -94,16 +95,159 @@ class _HomePageState extends State<HomePage> {
     ),
 
               body: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+
+
+                // child: Column(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: <Widget>[
+                //     //SearchWidget(),
+                //      TopMenus(),
+                //       _dishModel != null  ?
+                //       PopularFoodsWidget(_dishModel?.DishList):CircularProgressIndicator(),
+                //    // BestFoodWidget(),
+                //   ],
+                // ),
+
+          child: Container(
+              child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
                   children: <Widget>[
-                    //SearchWidget(),
-                     TopMenus(),
-                      _dishModel != null  ?
-                      PopularFoodsWidget(_dishModel?.DishList):CircularProgressIndicator(),
-                   // BestFoodWidget(),
-                  ],
-                ),
+                  Container(
+                      margin: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(3.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: Row(
+                             children: <Widget>[
+                               Padding(
+                                 padding: const EdgeInsets.all(10.0),
+                                 child: Text('1st Floor', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.all(10.0),
+                                 child: Text('Delivery', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.all(10.0),
+                                 child: Text('Take Away', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                               ),
+
+                           ]
+                      )
+                  ),
+                    Container(
+                          child: Row(
+                            children: <Widget>[
+                              Positioned(
+
+                                child: Container(
+
+                                  height: MediaQuery.of(context).size.height,
+                                  width: 600.0,
+                                  color: Colors.white,
+                                    child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Container(
+                                              margin: const EdgeInsets.all(10.0),
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(color: Colors.grey)
+                                              ),
+                                             child:Padding(
+                                                padding: const EdgeInsets.fromLTRB(20.0,10.0,20.0,20.0),
+                                                child: Text('Back', style: TextStyle(fontSize: 15)),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin: const EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.grey)
+                                                ),
+                                              width: 150.0,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(0.0),
+                                                  child: DropdownButton<String>(
+                                                    hint: Text("Take Away"),
+                                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                                      return DropdownMenuItem<String>(
+                                                        value: value,
+                                                        child: Text(value),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged: (_) {},
+                                                  ),
+                                                )
+
+                                            ),
+
+                                            Container(
+                                                margin: const EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.grey)
+                                                ),
+                                                width: 160.0,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(0.0),
+                                                  child: DropdownButton<String>(
+                                                    hint: Text("New Rcpt"),
+                                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                                      return DropdownMenuItem<String>(
+                                                        value: value,
+                                                        child: Text(value),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged: (_) {},
+                                                  ),
+                                                )
+
+                                           ),
+
+
+
+
+                                          ]
+                                      )
+
+
+                                ),),
+                              Positioned(
+                                child: Container(
+                                    height: MediaQuery.of(context).size.height,
+                                    width: 600.0,
+                                    child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          TopMenus(),
+                                          _dishModel != null  ?
+                                          PopularFoodsWidget(_dishModel?.DishList):CircularProgressIndicator(),
+                                        ]
+                                    )
+                                ),),
+
+
+
+                            ],
+                          ),
+                        )
+                    ]
+                   )
+
+                  )
+
+
+
+             ]
+              )
+           )
+
               ),
               bottomNavigationBar: BottomNavBarWidget(),
             ),

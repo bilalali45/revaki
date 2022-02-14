@@ -21,8 +21,8 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
         children: <Widget>[
           PopularFoodTitle(),
           Expanded(
-            child: PopularFoodItems(widget.dishModelList),
-             // child: PopularFoodItems(),
+           // child: PopularFoodItems(widget.dishModelList),
+              child: PopularFoodItems(),
           )
         ],
       ),
@@ -65,7 +65,7 @@ class PopularFoodTiles extends StatelessWidget {
               ),*/
             ]),
             child: Card(
-                color: Colors.white,
+                color: Color.fromRGBO(68, 78, 94,1),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: const BorderRadius.all(
@@ -73,8 +73,8 @@ class PopularFoodTiles extends StatelessWidget {
                   ),
                 ),
                 child: Container(
-                  width: MediaQuery.of(context).size.height,
-                  height: 340,
+                  width: MediaQuery.of(context).size.width,
+                  height: 150,
                   child: Column(
                     children: <Widget>[
                       Stack(
@@ -109,8 +109,8 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.network(imageUrl,
-                                    height: 200,
+                                child: Image.asset(imageUrl,
+                                    height: 100,
                                     fit: BoxFit.cover, width: double.infinity,
 
                             )),
@@ -125,33 +125,33 @@ class PopularFoodTiles extends StatelessWidget {
                             padding: EdgeInsets.only(left: 5, top: 5),
                             child: Text(name,
                                 style: TextStyle(
-                                    color: Color(0xFF6e6e71),
+                                    color: Colors.white,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
                           ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            padding: EdgeInsets.only(right: 5),
-                            child: Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white70,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xFFfae3e2),
-                                      blurRadius: 25.0,
-                                      offset: Offset(0.0, 0.75),
-                                    ),
-                                  ]),
-                              child: Icon(
-                                Icons.near_me,
-                                color: Color(0xFFfb3132),
-                                size: 16,
-                              ),
-                            ),
-                          ),
+                          // Container(
+                          //   alignment: Alignment.topRight,
+                          //   padding: EdgeInsets.only(right: 5),
+                          //   child: Container(
+                          //     height: 28,
+                          //     width: 28,
+                          //     decoration: BoxDecoration(
+                          //         shape: BoxShape.circle,
+                          //         color: Colors.white70,
+                          //         boxShadow: [
+                          //           BoxShadow(
+                          //             color: Color(0xFFfae3e2),
+                          //             blurRadius: 25.0,
+                          //             offset: Offset(0.0, 0.75),
+                          //           ),
+                          //         ]),
+                          //     child: Icon(
+                          //       Icons.near_me,
+                          //       color: Color(0xFFfb3132),
+                          //       size: 16,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       Row(
@@ -206,7 +206,7 @@ class PopularFoodTiles extends StatelessWidget {
                                 padding: EdgeInsets.only(left: 5, top: 5),
                                 child: Text("($numberOfRating)",
                                     style: TextStyle(
-                                        color: Color(0xFF6e6e71),
+                                        color: Colors.white,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400)),
                               ),
@@ -217,7 +217,7 @@ class PopularFoodTiles extends StatelessWidget {
                             padding: EdgeInsets.only(left: 5, top: 5, right: 5),
                             child: Text('\$' + price,
                                 style: TextStyle(
-                                    color: Color(0xFF6e6e71),
+                                    color: Colors.white,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600)),
                           )
@@ -259,100 +259,100 @@ class PopularFoodTitle extends StatelessWidget {
   }
 }
 
-class PopularFoodItems extends StatelessWidget {
-  List<dishmodelDishList?>? dishModelList;
-  PopularFoodItems(this.dishModelList);
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount:dishModelList?.length ?? 0,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4),
-      itemBuilder: (BuildContext context, int index) {
-        return  PopularFoodTiles(
-            name: dishModelList![index]?.DishName ?? "",
-            imageUrl: dishModelList![index]?.ImageURL ?? "",
-            rating: '4.9',
-            numberOfRating: '200',
-            price:  dishModelList![index]?.TotalPrice.toString() ?? "",
-            slug: "fried_egg");
-      });
-  }
-}
-
-
 // class PopularFoodItems extends StatelessWidget {
+//   List<dishmodelDishList?>? dishModelList;
+//   PopularFoodItems(this.dishModelList);
 //   @override
 //   Widget build(BuildContext context) {
-//     return GridView.count(
-//       primary: false,
-//       padding: const EdgeInsets.all(20),
-//       crossAxisCount: 4,
-//       children: <Widget>[
-//         PopularFoodTiles(
-//             name: "Fried Egg",
-//             imageUrl: d1,
+//     return GridView.builder(
+//       itemCount:dishModelList?.length ?? 0,
+//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//           crossAxisCount: 4),
+//       itemBuilder: (BuildContext context, int index) {
+//         return  PopularFoodTiles(
+//             name: dishModelList![index]?.DishName ?? "",
+//             imageUrl: dishModelList![index]?.ImageURL ?? "",
 //             rating: '4.9',
 //             numberOfRating: '200',
-//             price: '15.06',
-//             slug: "fried_egg"),
-//         PopularFoodTiles(
-//             name: "Mixed Vegetable",
-//             imageUrl: d1,
-//             rating: "4.9",
-//             numberOfRating: "100",
-//             price: "17.03",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Salad With Chicken",
-//             imageUrl: d1,
-//             rating: "4.0",
-//             numberOfRating: "50",
-//             price: "11.00",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Mixed Salad",
-//             imageUrl: d1,
-//             rating: "4.00",
-//             numberOfRating: "100",
-//             price: "11.10",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Red meat,Salad",
-//             imageUrl: d1,
-//             rating: "4.6",
-//             numberOfRating: "150",
-//             price: "12.00",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Mixed Salad",
-//             imageUrl: d1,
-//             rating: "4.00",
-//             numberOfRating: "100",
-//             price: "11.10",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Potato,Meat fry",
-//             imageUrl: d1,
-//             rating: "4.2",
-//             numberOfRating: "70",
-//             price: "23.0",
-//             slug: ""),
-//         PopularFoodTiles(
-//             name: "Fried Egg",
-//             imageUrl: d1,
-//             rating: '4.9',
-//             numberOfRating: '200',
-//             price: '15.06',
-//             slug: "fried_egg"),
-//         PopularFoodTiles(
-//             name: "Red meat,Salad",
-//             imageUrl: d1,
-//             rating: "4.6",
-//             numberOfRating: "150",
-//             price: "12.00",
-//             slug: ""),
-//       ],
-//     );
+//             price:  dishModelList![index]?.TotalPrice.toString() ?? "",
+//             slug: "fried_egg");
+//       });
 //   }
 // }
+
+
+class PopularFoodItems extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      primary: false,
+      padding: const EdgeInsets.all(10),
+      crossAxisCount: 3,
+      children: <Widget>[
+        PopularFoodTiles(
+            name: "Fried Egg",
+            imageUrl: d1,
+            rating: '4.9',
+            numberOfRating: '200',
+            price: '15.06',
+            slug: "fried_egg"),
+        PopularFoodTiles(
+            name: "Mixed Vegetable",
+            imageUrl: d1,
+            rating: "4.9",
+            numberOfRating: "100",
+            price: "17.03",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Salad With Chicken",
+            imageUrl: d1,
+            rating: "4.0",
+            numberOfRating: "50",
+            price: "11.00",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Mixed Salad",
+            imageUrl: d1,
+            rating: "4.00",
+            numberOfRating: "100",
+            price: "11.10",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Red meat,Salad",
+            imageUrl: d1,
+            rating: "4.6",
+            numberOfRating: "150",
+            price: "12.00",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Mixed Salad",
+            imageUrl: d1,
+            rating: "4.00",
+            numberOfRating: "100",
+            price: "11.10",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Potato,Meat fry",
+            imageUrl: d1,
+            rating: "4.2",
+            numberOfRating: "70",
+            price: "23.0",
+            slug: ""),
+        PopularFoodTiles(
+            name: "Fried Egg",
+            imageUrl: d1,
+            rating: '4.9',
+            numberOfRating: '200',
+            price: '15.06',
+            slug: "fried_egg"),
+        PopularFoodTiles(
+            name: "Red meat,Salad",
+            imageUrl: d1,
+            rating: "4.6",
+            numberOfRating: "150",
+            price: "12.00",
+            slug: ""),
+      ],
+    );
+  }
+}

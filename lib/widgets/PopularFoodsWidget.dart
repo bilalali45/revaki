@@ -237,7 +237,7 @@ class PopularFoodTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 30, right: 10, top: 50, bottom: 10),
+      padding: EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

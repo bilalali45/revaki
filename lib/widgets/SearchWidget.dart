@@ -4,7 +4,7 @@ class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10,top: 5,right: 10,bottom: 5),
+      padding: EdgeInsets.only(left: 0,top: 0,right: 0,bottom: 5),
       child: TextField(
 
         decoration: InputDecoration(

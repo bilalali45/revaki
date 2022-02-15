@@ -24,18 +24,27 @@ final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
 
 var contxt;
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   Dio _dio = Dio();
   Response? response;
   Response? categoryresponse;
   dishmodel? _dishModel;
+  late TabController _tabController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getData();
+    _tabController = TabController(initialIndex: 1, vsync: this, length: 3);
   }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     contxt = context;
@@ -94,6 +103,7 @@ class _HomePageState extends State<HomePage> {
         ),
     ),
 
+
               body: SingleChildScrollView(
 
 
@@ -117,94 +127,151 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                   children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.all(10.0),
                       padding: const EdgeInsets.all(3.0),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey)
                       ),
-                      child: Row(
-                             children: <Widget>[
-                               Padding(
-                                 padding: const EdgeInsets.all(10.0),
-                                 child: Text('1st Floor', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                               ),
-                               Padding(
-                                 padding: const EdgeInsets.all(10.0),
-                                 child: Text('Delivery', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                               ),
-                               Padding(
-                                 padding: const EdgeInsets.all(10.0),
-                                 child: Text('Take Away', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                               ),
 
-                           ]
-                      )
+              child: BottomAppBar(
+                  child: Container(
+                      child: TabBar(
+                        indicatorSize: TabBarIndicatorSize.label,
+                        isScrollable: false,
+                        indicator: BoxDecoration(
+                          color: Colors.red,
+                        ),
+                        tabs: <Widget>[
+                                   Padding(
+                                     padding: const EdgeInsets.all(10.0),
+                                     child: Text('1st Floor', style: TextStyle(fontSize: 20,color: Colors.black)),
+                                   ),
+                                   Padding(
+                                     padding: const EdgeInsets.all(10.0),
+                                     child: Text('Delivery', style: TextStyle(fontSize: 20,color: Colors.black)),
+                                   ),
+                                   Padding(
+                                     padding: const EdgeInsets.all(10.0),
+                                     child: Text('Take Away', style: TextStyle(fontSize: 20,color: Colors.black)),
+                                   ),
+                        ],
+                        controller: _tabController,
+                      ),
+
+
                   ),
+
+
+              ),
+
+                      // child: Row(
+                      //        children: <Widget>[
+                      //          Padding(
+                      //            padding: const EdgeInsets.all(10.0),
+                      //            child: Text('1st Floor', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                      //          ),
+                      //          Padding(
+                      //            padding: const EdgeInsets.all(10.0),
+                      //            child: Text('Delivery', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                      //          ),
+                      //          Padding(
+                      //            padding: const EdgeInsets.all(10.0),
+                      //            child: Text('Take Away', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                      //          ),
+                      //
+                      //      ]
+                      // )
+                   ),
+
+                    // Container(
+                    //   child: TabBarView(
+                    //     controller: _tabController,
+                    //     children: [
+                    //       Container(
+                    //         color: Colors.red,
+                    //       ),
+                    //       Container(
+                    //         color: Colors.orange,
+                    //       ),
+                    //     ],
+                    //   ),
+                    //
+                    //
+                    // ),
+
+
                     Container(
                           child: Row(
                             children: <Widget>[
                               Positioned(
-
                                 child: Container(
-
-                                  height: MediaQuery.of(context).size.height,
-                                  width: 600.0,
-                                  color: Colors.white,
-                                    child: Row(
+                                     height: MediaQuery.of(context).size.height,
+                                     width: 600.0,
+                                     color: Colors.white,
+                                     child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
+                                            // Container(
+                                            //   padding: const EdgeInsets.all(3.0),
+                                            //   decoration: BoxDecoration(
+                                            //       border: Border.all(color: Colors.grey)
+                                            //   ),
+                                            //  child:Padding(
+                                            //     padding: const EdgeInsets.fromLTRB(10.0,10.0,10.0,18.0),
+                                            //     child: Text('Back', style: TextStyle(fontSize: 15)),
+                                            //   ),
+                                            // ),
                                             Container(
-                                              margin: const EdgeInsets.all(10.0),
-                                              padding: const EdgeInsets.all(3.0),
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(color: Colors.grey)
-                                              ),
-                                             child:Padding(
-                                                padding: const EdgeInsets.fromLTRB(20.0,10.0,20.0,20.0),
-                                                child: Text('Back', style: TextStyle(fontSize: 15)),
-                                              ),
-                                            ),
-                                            Container(
-                                                margin: const EdgeInsets.all(10.0),
                                                 padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.grey)
                                                 ),
-                                              width: 150.0,
+
+                                                width:300.0,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(0.0),
                                                   child: DropdownButton<String>(
+                                                    isExpanded: true,
+                                                    underline: Container(color: Colors.transparent),
                                                     hint: Text("Take Away"),
                                                     items: <String>['A', 'B', 'C', 'D'].map((String value) {
                                                       return DropdownMenuItem<String>(
                                                         value: value,
+
                                                         child: Text(value),
                                                       );
                                                     }).toList(),
-                                                    onChanged: (_) {},
+                                                    onChanged: (_) {
+
+                                                    },
                                                   ),
                                                 )
 
                                             ),
 
                                             Container(
-                                                margin: const EdgeInsets.all(10.0),
+
+                                                width:300.0,
+
                                                 padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.grey)
                                                 ),
-                                                width: 160.0,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(0.0),
                                                   child: DropdownButton<String>(
+                                                    isExpanded: true,
+                                                    underline: Container(color: Colors.transparent),
                                                     hint: Text("New Rcpt"),
                                                     items: <String>['A', 'B', 'C', 'D'].map((String value) {
                                                       return DropdownMenuItem<String>(
+
                                                         value: value,
                                                         child: Text(value),
                                                       );
                                                     }).toList(),
-                                                    onChanged: (_) {},
+                                                    onChanged: (_) {
+
+                                                    },
                                                   ),
                                                 )
 
@@ -220,12 +287,16 @@ class _HomePageState extends State<HomePage> {
                                 ),),
                               Positioned(
                                 child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey)
+                                    ),
                                     height: MediaQuery.of(context).size.height,
-                                    width: 600.0,
+                                    width:  670.0,
                                     child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          TopMenus(),
+                                          children: <Widget>[
+                                            TopMenus(),
+                                            SearchWidget(),
                                           _dishModel != null  ?
                                           PopularFoodsWidget(_dishModel?.DishList):CircularProgressIndicator(),
                                         ]
@@ -249,7 +320,7 @@ class _HomePageState extends State<HomePage> {
            )
 
               ),
-              bottomNavigationBar: BottomNavBarWidget(),
+            ///  bottomNavigationBar: BottomNavBarWidget(),
             ),
 
 

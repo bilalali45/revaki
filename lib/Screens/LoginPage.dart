@@ -25,8 +25,8 @@ class _HomePageState extends State<LoginPage> {
           child: Stack(
           children: [
             Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SingleChildScrollView(
+                   padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -35,10 +35,10 @@ class _HomePageState extends State<LoginPage> {
                         Text(
                           "Revaki Pos",
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                        SizedBox(height: 50),
+                         ),
+                         SizedBox(height: 50),
                            _emailPasswordWidget(),
-                        SizedBox(height: 20),
+                         SizedBox(height: 20),
                          _submitButton(),
 
                         //  _divider(),

@@ -13,7 +13,6 @@ class _Alldataset extends State<Alldataset> {
       color: Colors.red,
       height: double.infinity,
       width: 1500,
-
     );
   }
 }

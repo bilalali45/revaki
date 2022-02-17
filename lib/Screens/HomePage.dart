@@ -91,18 +91,20 @@ class _HomePageState extends State<HomePage>
               ),
             ),
                body: Container(
-                  child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                   child: Row(
+                   crossAxisAlignment: CrossAxisAlignment.stretch,
                    children: <Widget>[
                    Container(
-                      width: MediaQuery.of(context).size.width,
-                       child: Column(children: <Widget>[
-                         Container(
+                         width: MediaQuery.of(context).size.width,
+                         child: Column(children: <Widget>[
+                          Container(
                           padding: const EdgeInsets.all(3.0),
                            decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey)),
                                child: BottomAppBar(
                                  child: Container(
+
                                   alignment: Alignment.bottomLeft,
                                    child: Column(
                                    children: <Widget>[
@@ -142,128 +144,141 @@ class _HomePageState extends State<HomePage>
                                  ),
                                ),
                         ),
-                        Container(
+                          Container(
                           child: Row(
                             children: <Widget>[
-                              Positioned(
-                                child: Container(
-                                    height: MediaQuery.of(context).size.height,
-                                    width: 600.0,
-                                    color: Colors.white,
-                               child: Column(
-                                   children: <Widget>[
-                                     new Container(
-                                       child: Row(
-                                           crossAxisAlignment:
-                                           CrossAxisAlignment.start,
-                                           children: <Widget>[
-                                             // Container(
-                                             //   padding: const EdgeInsets.all(3.0),
-                                             //   decoration: BoxDecoration(
-                                             //       border: Border.all(color: Colors.grey)
-                                             //   ),
-                                             //  child:Padding(
-                                             //     padding: const EdgeInsets.fromLTRB(10.0,10.0,10.0,18.0),
-                                             //     child: Text('Back', style: TextStyle(fontSize: 15)),
-                                             //   ),
-                                             // ),
-                                             Container(
-                                                 padding:
-                                                 const EdgeInsets.all(3.0),
-                                                 decoration: BoxDecoration(
-                                                     border: Border.all(
-                                                         color: Colors.grey)),
-                                                 width: 300.0,
-                                                 child: Padding(
-                                                   padding:
-                                                   const EdgeInsets.all(0.0),
-                                                   child: DropdownButton<String>(
-                                                     isExpanded: true,
-                                                     underline: Container(
-                                                         color:
-                                                         Colors.transparent),
-                                                     hint: Text("Take Away"),
-                                                     items: <String>[
-                                                       'A',
-                                                       'B',
-                                                       'C',
-                                                       'D'
-                                                     ].map((String value) {
-                                                       return DropdownMenuItem<
-                                                           String>(
-                                                         value: value,
-                                                         child: Text(value),
-                                                       );
-                                                     }).toList(),
-                                                     onChanged: (_) {},
-                                                   ),
-                                                 )),
-                                             Container(
-                                                 width: 300.0,
-                                                 padding:
-                                                 const EdgeInsets.all(3.0),
-                                                 decoration: BoxDecoration(
-                                                     border: Border.all(
-                                                         color: Colors.grey)),
-                                                 child: Padding(
-                                                   padding:
-                                                   const EdgeInsets.all(0.0),
-                                                   child: DropdownButton<String>(
-                                                     isExpanded: true,
-                                                     underline: Container(
-                                                         color:
-                                                         Colors.transparent),
-                                                     hint: Text("New Rcpt"),
-                                                     items: <String>[
-                                                       'A',
-                                                       'B',
-                                                       'C',
-                                                       'D'
-                                                     ].map((String value) {
-                                                       return DropdownMenuItem<
-                                                           String>(
-                                                         value: value,
-                                                         child: Text(value),
-                                                       );
-                                                     }).toList(),
-                                                     onChanged: (_) {
-
-                                                     },
-                                                   ),
-                                                 )),
-                                           ])
-                                   ),
-
-                                     new Container(
-                                         child: Column(
-                                             children: <Widget>[
-                                                 _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
-                                             ]
-                                         )
-                                     ),
-                                   ]
 
 
-                                 )),
-                              ),
-                              Positioned(
-                                child: Container(
-                                     decoration: BoxDecoration(
-                                     border: Border.all(color: Colors.grey)),
-                                     height: MediaQuery.of(context).size.height,
-                                     width: 670.0,
-                                     child: Column(
-                                        mainAxisAlignment:
+
+                                ///PopularListItemstitle(),
+                                Expanded(
+
+                                    child: Container(
+                                        height: MediaQuery.of(context).size.height,
+                                        width: MediaQuery.of(context).size.width,
+                                        color: Colors.white,
+                                        child: Column(
+                                            children: <Widget>[
+                                              new Container(
+                                                  child: Row(
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        // Container(
+                                                        //   padding: const EdgeInsets.all(3.0),
+                                                        //   decoration: BoxDecoration(
+                                                        //       border: Border.all(color: Colors.grey)
+                                                        //   ),
+                                                        //  child:Padding(
+                                                        //     padding: const EdgeInsets.fromLTRB(10.0,10.0,10.0,18.0),
+                                                        //     child: Text('Back', style: TextStyle(fontSize: 15)),
+                                                        //   ),
+                                                        // ),
+
+                                                        Expanded(child :
+                                                        Container(
+                                                            padding:
+                                                            const EdgeInsets.all(3.0),
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Colors.grey)),
+                                                            width: 300.0,
+                                                            child: Padding(
+                                                              padding:
+                                                              const EdgeInsets.all(0.0),
+                                                              child: DropdownButton<String>(
+                                                                isExpanded: true,
+                                                                underline: Container(
+                                                                    color:
+                                                                    Colors.transparent),
+                                                                hint: Text("Take Away"),
+                                                                items: <String>[
+                                                                  'A',
+                                                                  'B',
+                                                                  'C',
+                                                                  'D'
+                                                                ].map((String value) {
+                                                                  return DropdownMenuItem<
+                                                                      String>(
+                                                                    value: value,
+                                                                    child: Text(value),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged: (_) {},
+                                                              ),
+                                                            ))
+                                                        ),
+                                                      Expanded(child :
+                                                        Container(
+                                                            width: 300.0,
+                                                            padding:
+                                                            const EdgeInsets.all(3.0),
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Colors.grey)),
+                                                            child: Padding(
+                                                              padding:
+                                                              const EdgeInsets.all(0.0),
+                                                              child: DropdownButton<String>(
+                                                                isExpanded: true,
+                                                                underline: Container(
+                                                                    color:
+                                                                    Colors.transparent),
+                                                                hint: Text("New Rcpt"),
+                                                                items: <String>[
+                                                                  'A',
+                                                                  'B',
+                                                                  'C',
+                                                                  'D'
+                                                                ].map((String value) {
+                                                                  return DropdownMenuItem<
+                                                                      String>(
+                                                                    value: value,
+                                                                    child: Text(value),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged: (_) {
+
+                                                                },
+                                                              ),
+                                                            )),
+                                                         )
+                                                      ])
+                                              ),
+
+                                              new Container(
+                                                  child: Column(
+                                                      children: <Widget>[
+                                                        _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
+                                                      ]
+                                                  )
+                                              ),
+                                            ]
+
+
+                                        )),
+
+                                ),
+                                Expanded(
+
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey)),
+                                          height: MediaQuery.of(context).size.height,
+                                          width: MediaQuery.of(context).size.width,
+                                          child: Column(
+                                            mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                             children: <Widget>[
-                                             TopMenus(),
-                                             SearchWidget(),
-                                            _dishModel != null
-                                              ? PopularFoodsWidget(
+                                            children: <Widget>[
+                                              TopMenus(),
+                                              SearchWidget(),
+                                              _dishModel != null
+                                                  ? PopularFoodsWidget(
                                                   _dishModel?.DishList)
-                                              : CircularProgressIndicator(),
-                                        ])),
-                              ),
+                                                  : CircularProgressIndicator(),
+                                            ])),
+
+                                )
 
 
 
@@ -272,7 +287,9 @@ class _HomePageState extends State<HomePage>
                           ),
                         )
                       ]))
-                ]))
+                ])
+
+               )
                ),
              ///  bottomNavigationBar: BottomNavBarWidget(),
           ),

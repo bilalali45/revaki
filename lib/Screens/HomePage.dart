@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/widgets/Alldataset.dart';
 import 'package:revaki/widgets/BottomNavBarWidget.dart';
+import 'package:revaki/widgets/ItemAddlist.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
@@ -14,15 +14,12 @@ import 'package:revaki/model/dishmodel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
-
 var contxt;
-
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   Dio _dio = Dio();
@@ -33,7 +30,6 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getData();
     _tabController = TabController(initialIndex: 1, vsync: this, length: 3);
@@ -59,16 +55,16 @@ class _HomePageState extends State<HomePage>
                  child: ListView(
                     padding: EdgeInsets.zero,
                     children: const <Widget>[
-                     DrawerHeader(
-                      decoration: BoxDecoration(
-                      color: Color.fromRGBO(195, 167, 142, 1),
-                    ),
-                    child: Text(
-                      'Drawer Header',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
+                      DrawerHeader(
+                         decoration: BoxDecoration(
+                         color: Color.fromRGBO(195, 167, 142, 1),
+                        ),
+                        child: Text(
+                        'Drawer Header',
+                          style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
                     ),
                   ),
                   ListTile(
@@ -85,7 +81,7 @@ class _HomePageState extends State<HomePage>
                   ),
                 ],
               ),
-               ),
+             ),
                  appBar: new AppBar(
                  backgroundColor: Color.fromRGBO(195, 167, 142, 1),
                  title: Text("Home"),
@@ -100,38 +96,40 @@ class _HomePageState extends State<HomePage>
                    children: <Widget>[
                    Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Column(children: <Widget>[
-                        Container(
+                       child: Column(children: <Widget>[
+                         Container(
                           padding: const EdgeInsets.all(3.0),
-                          decoration: BoxDecoration(
+                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey)),
                                child: BottomAppBar(
                                  child: Container(
+                                  alignment: Alignment.bottomLeft,
                                    child: Column(
                                    children: <Widget>[
                                          Container(
+                                            width: 600,
                                             child: TabBar(
                                              indicatorSize: TabBarIndicatorSize.label,
-                                             isScrollable: false,
-                                               indicator: BoxDecoration(
+                                                isScrollable: false,
+                                                 indicator: BoxDecoration(
                                                  color: Colors.red,
-                                               ),
+                                                ),
                                              tabs: <Widget>[
-                                               Padding(
-                                                 padding: const EdgeInsets.all(10.0),
-                                                 child: Text('1st Floor',
+                                                Padding(
+                                                   padding: const EdgeInsets.all(10.0),
+                                                   child: Text('1st Floor',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
-                                               ),
+                                                  ),
                                                Padding(
                                                  padding: const EdgeInsets.all(10.0),
                                                  child: Text('Delivery',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
-                                               ),
+                                                 ),
                                                Padding(
                                                  padding: const EdgeInsets.all(10.0),
-                                                 child: Text('Take Away',
+                                                  child: Text('Take Away',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
                                                ),
@@ -139,15 +137,10 @@ class _HomePageState extends State<HomePage>
                                              controller: _tabController,
                                              ),
                                           ),
-
-                                       ]
+                                      ]
                                    )
-
-
-                                  ),
-
-
-                          ),
+                                 ),
+                               ),
                         ),
                         Container(
                           child: Row(
@@ -205,7 +198,6 @@ class _HomePageState extends State<HomePage>
                                                      onChanged: (_) {},
                                                    ),
                                                  )),
-
                                              Container(
                                                  width: 300.0,
                                                  padding:
@@ -234,7 +226,9 @@ class _HomePageState extends State<HomePage>
                                                          child: Text(value),
                                                        );
                                                      }).toList(),
-                                                     onChanged: (_) {},
+                                                     onChanged: (_) {
+
+                                                     },
                                                    ),
                                                  )),
                                            ])
@@ -243,13 +237,9 @@ class _HomePageState extends State<HomePage>
                                      new Container(
                                          child: Column(
                                              children: <Widget>[
-                                               _dishModel != null ? PopularFoodsWidget(_dishModel?.DishList) : CircularProgressIndicator(),
-
-                                               ]
-
-
-                                       )
-
+                                                 _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
+                                             ]
+                                         )
                                      ),
                                    ]
 
@@ -258,17 +248,17 @@ class _HomePageState extends State<HomePage>
                               ),
                               Positioned(
                                 child: Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey)),
-                                    height: MediaQuery.of(context).size.height,
-                                    width: 670.0,
-                                    child: Column(
+                                     decoration: BoxDecoration(
+                                     border: Border.all(color: Colors.grey)),
+                                     height: MediaQuery.of(context).size.height,
+                                     width: 670.0,
+                                     child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          TopMenus(),
-                                          SearchWidget(),
-                                          _dishModel != null
+                                             children: <Widget>[
+                                             TopMenus(),
+                                             SearchWidget(),
+                                            _dishModel != null
                                               ? PopularFoodsWidget(
                                                   _dishModel?.DishList)
                                               : CircularProgressIndicator(),
@@ -295,20 +285,15 @@ class _HomePageState extends State<HomePage>
     //   "token"
     //   ""
     // });
-
-    Map<String, dynamic?> mapData = {
-      "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
-      "Token": "4070D5B30D09D9B89B5ADBB23073ACD9"
-    };
-    response = await _dio.post(
-        "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",
+      Map<String, dynamic?> mapData = {
+        "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
+        "Token": "4070D5B30D09D9B89B5ADBB23073ACD9"
+      };
+       response = await _dio.post(
+       "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",
         data: jsonEncode(mapData));
-
-    //print("Response222:"+response!.data!.toString());
-    _dishModel = dishmodel.fromJson(response?.data);
-
-    //log("Print"+_dishModel?.DishList![0].toString())
-
-    setState(() {});
+       //print("Response222:"+response!.data!.toString());
+       _dishModel = dishmodel.fromJson(response?.data);
+       setState(() {});
   }
 }

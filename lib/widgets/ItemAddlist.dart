@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/model/dishmodel.dart';
 
 class ItemAddlist extends StatefulWidget {
-  final List<ItemAddlist?>? dishModelList;
+  final List<dishmodelDishList?>? dishModelList;
   ItemAddlist(this.dishModelList);
   @override
   _ItemAddlist createState() => _ItemAddlist();
@@ -17,9 +18,12 @@ class _ItemAddlist extends State<ItemAddlist> {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
+          ///PopularListItemstitle(),
           Expanded(
-            // child: PopularFoodItems(widget.dishModelList),
-            child: PopularListItemstitle(),
+            child: ItemAddlistitem(),
+          ),
+          Expanded(
+            child: Additemview(),
           )
         ],
       ),
@@ -53,8 +57,8 @@ class PopularListItems extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-            decoration: BoxDecoration(boxShadow: [
+             padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+              decoration: BoxDecoration(boxShadow: [
               ]),
             child: Card(
                 color: Color.fromRGBO(68, 78, 94,1),
@@ -69,109 +73,21 @@ class PopularListItems extends StatelessWidget {
                   height: 150,
                   child: Column(
                     children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              alignment: Alignment.topRight,
-                              width: double.infinity,
-                              padding: EdgeInsets.only(right: 5, top: 5),
-                              child: Container(
-                                height: 28,
-                                width: 28,
-                                color: Colors.blue,
-
-
-                              ),
-                            ),
-                          ),
-
-                        ],
-                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5),
-                            child: Text(name,
-                                style: TextStyle(
+                             child: Text(name,
+                                    style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                          ),
+                            ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text(rating,
-                                    style: TextStyle(
-                                        color: Color(0xFF6e6e71),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 3, left: 5),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFF9b9b9c),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text("($numberOfRating)",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('\$' + price,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600)),
-                          )
-                        ],
-                      )
+
                     ],
                   ),
                 )),
@@ -186,22 +102,18 @@ class PopularListItemstitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
-      child: Row(
+      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Popluar Foods",
-            style: TextStyle(
-                fontSize: 20,
-                color: Color(0xFF3a3a3b),
-                fontWeight: FontWeight.w300),
-          ),
-          Text(
-            "See all",
-            style: TextStyle(
-                fontSize: 16, color: Colors.blue, fontWeight: FontWeight.w100),
-          )
+                "Popluar Foods test",
+                 style: TextStyle(
+                 fontSize: 20,
+                 color: Color(0xFF3a3a3b),
+                 fontWeight: FontWeight.w300),
+             ),
+
         ],
       ),
     );
@@ -228,7 +140,59 @@ class PopularListItemstitle extends StatelessWidget {
 //       });
 //   }
 // }
+  class Additemview extends StatelessWidget {
+    @override
+     Widget build(BuildContext context) {
+       return Container(
+          child: Column(
+              children: <Widget>[
+                  Container(
+                      color: Colors.white,
+                      child : Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
 
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                                child : Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text('Subtotal: Rs 0',
+                                            style: TextStyle(
+                                                fontSize: 20, color: Colors.black)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text('Add Discount',
+                                            style: TextStyle(
+                                                fontSize: 20, color: Colors.black)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text('Sale tax 13%: Rs',
+                                            style: TextStyle(
+                                                fontSize: 20, color: Colors.black)),
+                                      ),
+
+                                    ]
+                                )
+                            )
+                        )
+                      ],
+                   )
+
+                )
+
+             ]
+
+        )
+      );
+    }
+  }
 
 class ItemAddlistitem extends StatelessWidget {
   @override

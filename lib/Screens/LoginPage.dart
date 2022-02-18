@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/Screens/HomePage.dart';
+import 'package:revaki/Screens/Verification.dart';
 import 'package:revaki/constants/bezierContainer.dart';
 
 class LoginPage extends StatefulWidget {
@@ -76,8 +75,7 @@ Widget _submitButton() {
         // MaterialPageRoute(builder: (context) => HomePage());
         // showInSnackBar("test",contxt);
         Navigator.push(
-            contxt, MaterialPageRoute(builder: (context) => HomePage())
-
+            contxt, MaterialPageRoute(builder: (context) => Verification())
         );
 
 
@@ -99,9 +97,9 @@ Widget _submitButton() {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Color(0xff00b0ff), Color(0xff69e2ff)])),
-        child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+             child: Text(
+              'Login',
+              style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ));
 }

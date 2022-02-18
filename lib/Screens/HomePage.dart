@@ -58,9 +58,9 @@ class _HomePageState extends State<HomePage>
                       DrawerHeader(
                          decoration: BoxDecoration(
                          color: Color.fromRGBO(195, 167, 142, 1),
-                        ),
+                         ),
                         child: Text(
-                        'Drawer Header',
+                          'Drawer Header',
                           style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage>
                                                    child: Text('1st Floor',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
-                                                  ),
+                                                   ),
                                                Padding(
                                                  padding: const EdgeInsets.all(10.0),
                                                  child: Text('Delivery',
@@ -216,27 +216,27 @@ class _HomePageState extends State<HomePage>
                                                             decoration: BoxDecoration(
                                                                 border: Border.all(
                                                                     color: Colors.grey)),
-                                                            child: Padding(
-                                                              padding:
-                                                              const EdgeInsets.all(0.0),
-                                                              child: DropdownButton<String>(
-                                                                isExpanded: true,
-                                                                underline: Container(
+                                                                 child: Padding(
+                                                                  padding:
+                                                                 const EdgeInsets.all(0.0),
+                                                                 child: DropdownButton<String>(
+                                                                 isExpanded: true,
+                                                                 underline: Container(
                                                                     color:
                                                                     Colors.transparent),
-                                                                hint: Text("New Rcpt"),
-                                                                items: <String>[
+                                                                  hint: Text("New Rcpt"),
+                                                                  items: <String>[
                                                                   'A',
                                                                   'B',
                                                                   'C',
                                                                   'D'
-                                                                ].map((String value) {
-                                                                  return DropdownMenuItem<
-                                                                      String>(
+                                                                  ].map((String value) {
+                                                                   return DropdownMenuItem<
+                                                                     String>(
                                                                     value: value,
                                                                     child: Text(value),
                                                                   );
-                                                                }).toList(),
+                                                                 }).toList(),
                                                                 onChanged: (_) {
 
                                                                 },

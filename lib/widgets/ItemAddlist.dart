@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
@@ -55,36 +57,58 @@ class PopularListItems extends StatelessWidget {
         //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
       },
       child: Column(
-        children: <Widget>[
-          Container(
+         children: <Widget>[
+            Container(
              padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
               decoration: BoxDecoration(boxShadow: [
               ]),
             child: Card(
-                color: Color.fromRGBO(68, 78, 94,1),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: const BorderRadius.all(
                     Radius.circular(5.0),
                   ),
                 ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 150,
-                  child: Column(
+                 child: Container(
+                   width: MediaQuery.of(context).size.width,
+                   height: 80,
+                   child: Column(
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5),
-                             child: Text(name,
-                                    style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
+
+                            child: Row(
+                                children: <Widget>[
+                                  SizedBox(height: 20),
+                                   Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                     child:_addButton(),
+                                    ),
+
+                                  SizedBox(height: 20),
+                                  Padding(
+                                       padding: const EdgeInsets.all(6.0),
+                                        child:_itemcount(12),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                       padding: const EdgeInsets.all(6.0),
+                                        child: _minusButton(),
+                                  ),
+                                  SizedBox(height: 20),
+                                    Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                         child: _itemsname(name)
+                                    ),
+
+                                  // _MinusButton(),
+                                ]
                             ),
+
+                          ),
+
                         ],
                       ),
 
@@ -104,21 +128,78 @@ class PopularListItemstitle extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-                "Popluar Foods test",
-                 style: TextStyle(
-                 fontSize: 20,
-                 color: Color(0xFF3a3a3b),
-                 fontWeight: FontWeight.w300),
-             ),
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: <Widget>[
+          Container(
+              child: Row(
+                  children: <Widget>[
+                        SizedBox(width: 20),
+                         _addButton(),
+                         SizedBox(width: 20),
+                      // _MinusButton(),
+                        ]
+                    ),
+
+               ),
+
+
+
 
         ],
       ),
     );
   }
 }
+  Widget _addButton() {
+    return GestureDetector(
+        onTap: () {
+          },
+        child: Container(
+          width: 30,
+          padding: EdgeInsets.symmetric(vertical: 15),
+          alignment: Alignment.center,
+           decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+
+                 ),
+                  child: Image.asset(
+                    addp,
+                  ),
+                 ));
+  }
+Widget _itemsname(String name) {
+  return Column(
+    children: <Widget>[
+      Text(name)
+    ],
+  );
+}
+
+Widget _itemcount(int i) {
+  return Column(
+    children: <Widget>[
+      Text(i.toString())
+    ],
+  );
+}
+Widget _minusButton() {
+  return GestureDetector(
+      onTap: () {
+      },
+      child: Container(
+        width: 40,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+
+        ),
+        child: Image.asset(
+          minusp,
+        ),
+      ));
+}
+
 
 // class PopularFoodItems extends StatelessWidget {
 //   List<dishmodelDishList?>? dishModelList;
@@ -197,10 +278,9 @@ class PopularListItemstitle extends StatelessWidget {
 class ItemAddlistitem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
+    return ListView(
       primary: false,
       padding: const EdgeInsets.all(10),
-      crossAxisCount: 3,
       children: <Widget>[
         PopularListItems(
             name: "Fried Egg",

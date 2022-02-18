@@ -31,18 +31,18 @@ class _HomePageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(height: height * .2),
-                        Text(
-                          "Revaki Pos",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                         ),
-                         SizedBox(height: 50),
+                          Text(
+                            "Revaki Pos",
+                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            SizedBox(height: 50),
                            _emailPasswordWidget(),
-                         SizedBox(height: 20),
-                         _submitButton(),
+                            SizedBox(height: 20),
+                           _submitButton(),
 
                         //  _divider(),
                         //  _facebookButton(),
-                        SizedBox(height: height * .055),
+                            SizedBox(height: height * .055),
                         //  _createAccountLabel(),
                       ],
                     ),
@@ -97,10 +97,10 @@ Widget _submitButton() {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Color(0xff00b0ff), Color(0xff69e2ff)])),
-             child: Text(
-              'Login',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
+                 child: Text(
+                  'Login',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+               ),
       ));
 }
 

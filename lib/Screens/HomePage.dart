@@ -91,7 +91,6 @@ class _HomePageState extends State<HomePage>
               ),
             ),
                body: Container(
-
                    child: Row(
                    crossAxisAlignment: CrossAxisAlignment.stretch,
                    children: <Widget>[
@@ -104,8 +103,7 @@ class _HomePageState extends State<HomePage>
                               border: Border.all(color: Colors.grey)),
                                child: BottomAppBar(
                                  child: Container(
-
-                                  alignment: Alignment.bottomLeft,
+                                     alignment: Alignment.bottomLeft,
                                    child: Column(
                                    children: <Widget>[
                                          Container(
@@ -147,13 +145,9 @@ class _HomePageState extends State<HomePage>
                           Container(
                           child: Row(
                             children: <Widget>[
-
-
-
-                                ///PopularListItemstitle(),
+                              ///PopularListItemstitle(),
                                 Expanded(
-
-                                    child: Container(
+                                   child: Container(
                                         height: MediaQuery.of(context).size.height,
                                         width: MediaQuery.of(context).size.width,
                                         color: Colors.white,
@@ -249,7 +243,8 @@ class _HomePageState extends State<HomePage>
                                               new Container(
                                                   child: Column(
                                                       children: <Widget>[
-                                                        _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
+                                                        ItemAddlist(_dishModel?.DishList)
+                                                       // _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
                                                       ]
                                                   )
                                               ),
@@ -260,8 +255,7 @@ class _HomePageState extends State<HomePage>
 
                                 ),
                                 Expanded(
-
-                                    child: Container(
+                                  child: Container(
                                         decoration: BoxDecoration(
                                             border: Border.all(color: Colors.grey)),
                                           height: MediaQuery.of(context).size.height,
@@ -272,10 +266,9 @@ class _HomePageState extends State<HomePage>
                                             children: <Widget>[
                                               TopMenus(),
                                               SearchWidget(),
-                                              _dishModel != null
-                                                  ? PopularFoodsWidget(
-                                                  _dishModel?.DishList)
-                                                  : CircularProgressIndicator(),
+                                              //_dishModel != null ? PopularFoodsWidget(_dishModel?.DishList) : CircularProgressIndicator(),
+                                               PopularFoodsWidget(_dishModel?.DishList)
+
                                             ])),
 
                                 )
@@ -295,6 +288,9 @@ class _HomePageState extends State<HomePage>
           ),
         );
   }
+
+
+
 
   void _getData() async {
     // FormData _formData;

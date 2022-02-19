@@ -11,8 +11,17 @@ class ItemAddlist extends StatefulWidget {
   @override
   _ItemAddlist createState() => _ItemAddlist();
 }
-
+int total_count = 0;
 class _ItemAddlist extends State<ItemAddlist> {
+
+  String selected = "first";
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,7 +99,7 @@ class PopularListItems extends StatelessWidget {
                                   SizedBox(height: 20),
                                   Padding(
                                        padding: const EdgeInsets.all(6.0),
-                                        child:_itemcount(12),
+                                        child:_itemcount(0),
                                   ),
                                   SizedBox(height: 20),
                                   Padding(
@@ -153,6 +162,11 @@ class PopularListItemstitle extends StatelessWidget {
   Widget _addButton() {
     return GestureDetector(
         onTap: () {
+
+          total_count++;
+          _itemcount(7);
+
+
           },
         child: Container(
           width: 30,
@@ -167,6 +181,8 @@ class PopularListItemstitle extends StatelessWidget {
                   ),
                  ));
   }
+
+
 Widget _itemsname(String name) {
   return Column(
     children: <Widget>[
@@ -178,7 +194,10 @@ Widget _itemsname(String name) {
 Widget _itemcount(int i) {
   return Column(
     children: <Widget>[
-      Text(i.toString())
+
+      Text(i.
+      toString()
+      )
     ],
   );
 }
@@ -201,26 +220,7 @@ Widget _minusButton() {
 }
 
 
-// class PopularFoodItems extends StatelessWidget {
-//   List<dishmodelDishList?>? dishModelList;
-//   PopularFoodItems(this.dishModelList);
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.builder(
-//       itemCount:dishModelList?.length ?? 0,
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//           crossAxisCount: 4),
-//       itemBuilder: (BuildContext context, int index) {
-//         return  PopularFoodTiles(
-//             name: dishModelList![index]?.DishName ?? "",
-//             imageUrl: dishModelList![index]?.ImageURL ?? "",
-//             rating: '4.9',
-//             numberOfRating: '200',
-//             price:  dishModelList![index]?.TotalPrice.toString() ?? "",
-//             slug: "fried_egg");
-//       });
-//   }
-// }
+
   class Additemview extends StatelessWidget {
     @override
      Widget build(BuildContext context) {
@@ -233,7 +233,48 @@ Widget _minusButton() {
                       children: <Widget>[
                         Expanded(
                           child: Container(
+                              margin: const EdgeInsets.all(30),
+                              child : Column(
+                                children: <Widget>[
 
+                                  Container(
+                                      child : Row(
+                                     children: <Widget>[
+                                       new Padding(
+                                         padding: const EdgeInsets.only(left: 5.0),
+                                         child: new Icon(Icons.delete, size: 50.0),
+                                       ),
+                                       new Padding(
+                                         padding: const EdgeInsets.only(left: 5.0),
+                                         child: new Icon(Icons.edit, size: 50.0),
+                                       ),
+                                       ]
+                                   )
+
+                                ),
+                                  Container(
+                                      child : Row(
+                                          children: <Widget>[
+                                            new Padding(
+                                              padding: const EdgeInsets.only(left: 5.0),
+                                              child: new Icon(Icons.delete, size: 50.0),
+                                            ),
+
+                                          ]
+                                      )
+
+
+                                  ),
+                              // Container(
+                              //   color: Colors.orange,
+                              //   child: FlutterLogo(
+                              //     size: 60.0,
+                              //   ),
+                              // ),
+
+                            ],
+
+                           )
                           ),
                         ),
                         Expanded(

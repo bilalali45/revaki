@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage>
                                                    child: Text('1st Floor',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
-                                                   ),
+                                                ),
                                                Padding(
                                                  padding: const EdgeInsets.all(10.0),
                                                  child: Text('Delivery',
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage>
                                                   child: Text('Take Away',
                                                      style: TextStyle(
                                                          fontSize: 20, color: Colors.black)),
-                                               ),
+                                                ),
                                              ],
                                              controller: _tabController,
                                              ),
@@ -264,8 +264,8 @@ class _HomePageState extends State<HomePage>
                                             mainAxisAlignment:
                                             MainAxisAlignment.center,
                                             children: <Widget>[
-                                              TopMenus(),
-                                              SearchWidget(),
+                                               TopMenus(),
+                                               SearchWidget(),
                                               //_dishModel != null ? PopularFoodsWidget(_dishModel?.DishList) : CircularProgressIndicator(),
                                                PopularFoodsWidget(_dishModel?.DishList)
 

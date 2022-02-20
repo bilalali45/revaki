@@ -6,12 +6,18 @@ import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/dishmodel.dart';
 
 class ItemAddlist extends StatefulWidget {
-  final List<dishmodelDishList?>? dishModelList;
-  ItemAddlist(this.dishModelList);
+ // final List<dishmodelDishList?>? dishModelList;
+ // ItemAddlist(this.dishModelList);
+
   @override
   _ItemAddlist createState() => _ItemAddlist();
+
+  @override
+  // TODO: implement key
+  Key? key = additemkey;
 }
 int total_count = 0;
+final GlobalKey<_ItemAddlist> additemkey= GlobalKey();
 class _ItemAddlist extends State<ItemAddlist> {
 
   String selected = "first";
@@ -19,13 +25,12 @@ class _ItemAddlist extends State<ItemAddlist> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+    //  height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
@@ -42,7 +47,7 @@ class _ItemAddlist extends State<ItemAddlist> {
   }
 }
 
-class PopularListItems extends StatelessWidget {
+/*class PopularListItems extends StatelessWidget {
   String name;
   String imageUrl;
   String rating;
@@ -93,7 +98,7 @@ class PopularListItems extends StatelessWidget {
                                   SizedBox(height: 20),
                                    Padding(
                                     padding: const EdgeInsets.all(6.0),
-                                     child:_addButton(),
+                                     child: _addButton(),
                                     ),
 
                                   SizedBox(height: 20),
@@ -129,9 +134,118 @@ class PopularListItems extends StatelessWidget {
       ),
     );
   }
+}*/
+
+
+class PopularListItems extends StatefulWidget {
+  final String name;
+  final String imageUrl;
+  final String rating;
+  final String numberOfRating;
+  final String price;
+  final String slug;
+
+  const PopularListItems(
+      {@required  Key? key,
+        required this.name,
+        required this.imageUrl,
+        required this.rating,
+        required this.numberOfRating,
+        required this.price,
+        required this.slug})
+      : super(key: key);
+
+
+  @override
+  _PopularListItemsState createState() => _PopularListItemsState();
 }
 
+class _PopularListItemsState extends State<PopularListItems> {
+
+  int counter=0;
+
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
+      },
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+            decoration: BoxDecoration(boxShadow: [
+            ]),
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(5.0),
+                  ),
+                ),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 80,
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+
+                            child: Row(
+                                children: <Widget>[
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: _addButton(onTap: (){
+                                      print("on tap called $counter");
+                                      setState(() {
+                                       ++counter;
+                                      });
+                                    }),
+                                  ),
+
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child:_itemcount(counter),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: _minusButton(),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: _itemsname(widget.name)
+                                  ),
+
+                                  // _MinusButton(),
+                                ]
+                            ),
+
+                          ),
+
+                        ],
+                      ),
+
+                    ],
+                  ),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
 class PopularListItemstitle extends StatelessWidget {
+  final dishmodelDishList item;
+  PopularListItemstitle(this.item);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -159,15 +273,12 @@ class PopularListItemstitle extends StatelessWidget {
     );
   }
 }
-  Widget _addButton() {
+  Widget _addButton({void Function()? onTap}) {
     return GestureDetector(
-        onTap: () {
-
-          total_count++;
-          _itemcount(7);
-
-
-          },
+      onTap: onTap,
+     /*   onTap: () {
+        //  _itemcount(9);
+        },*/
         child: Container(
           width: 30,
           padding: EdgeInsets.symmetric(vertical: 15),
@@ -194,10 +305,7 @@ Widget _itemsname(String name) {
 Widget _itemcount(int i) {
   return Column(
     children: <Widget>[
-
-      Text(i.
-      toString()
-      )
+      Text(i.toString())
     ],
   );
 }
@@ -210,9 +318,7 @@ Widget _minusButton() {
         padding: EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-
-        ),
+          borderRadius: BorderRadius.all(Radius.circular(5)),),
         child: Image.asset(
           minusp,
         ),
@@ -322,71 +428,10 @@ class ItemAddlistitem extends StatelessWidget {
     return ListView(
       primary: false,
       padding: const EdgeInsets.all(10),
-      children: <Widget>[
-        PopularListItems(
-            name: "Fried Egg",
-            imageUrl: d1,
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularListItems(
-            name: "Mixed Vegetable",
-            imageUrl: d1,
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "17.03",
-            slug: ""),
-        PopularListItems(
-            name: "Salad With Chicken",
-            imageUrl: d1,
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "11.00",
-            slug: ""),
-        PopularListItems(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularListItems(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        PopularListItems(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularListItems(
-            name: "Potato,Meat fry",
-            imageUrl: d1,
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "23.0",
-            slug: ""),
-        PopularListItems(
-            name: "Fried Egg",
-            imageUrl: d1,
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularListItems(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-      ],
+      children:  GlobaldishModelList.map<Widget>((item){
+         return PopularListItemstitle(item!);
+        }
+      ).toList(),
     );
   }
 }

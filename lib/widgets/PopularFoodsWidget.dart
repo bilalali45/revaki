@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:revaki/animation/ScaleRoute.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/dishmodel.dart';
+import 'package:revaki/widgets/ItemAddlist.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
   final List<dishmodelDishList?>? dishModelList;
-  PopularFoodsWidget(this.dishModelList);
+
+  PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
   @override
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
 }
@@ -15,14 +17,14 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      //height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
           PopularFoodTitle(),
           Expanded(
-           // child: PopularFoodItems(widget.dishModelList),
-              child: PopularFoodItems(),
+            child: PopularFoodItems(widget.dishModelList),
+             // child: PopularFoodItems(),
           )
         ],
       ),
@@ -31,26 +33,27 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 }
 
 class PopularFoodTiles extends StatelessWidget {
-  String name;
+/*  String name;
   String imageUrl;
   String rating;
   String numberOfRating;
   String price;
-  String slug;
+  String slug;*/
 
-  PopularFoodTiles(
-      {@required  Key? key,
-        required this.name,
-        required this.imageUrl,
-        required this.rating,
-        required this.numberOfRating,
-        required this.price,
-        required this.slug})
+  final dishmodelDishList model;
+
+  PopularFoodTiles(this.model,
+      {@required  Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        GlobaldishModelList.add(model);
+        if(additemkey.currentState != null)
+           additemkey.currentState!.setState(() {
+
+        });
         //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
       },
       child: Column(
@@ -109,7 +112,7 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(imageUrl,
+                                child: Image.asset(model.ImageURL!!,
                                     height: 100,
                                     fit: BoxFit.cover, width: double.infinity,
 
@@ -123,7 +126,7 @@ class PopularFoodTiles extends StatelessWidget {
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5),
-                            child: Text(name,
+                            child: Text(model.DishName!!,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -163,7 +166,7 @@ class PopularFoodTiles extends StatelessWidget {
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text(rating,
+                                child: Text("2",
                                     style: TextStyle(
                                         color: Color(0xFF6e6e71),
                                         fontSize: 10,
@@ -204,7 +207,7 @@ class PopularFoodTiles extends StatelessWidget {
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text("($numberOfRating)",
+                                child: Text("223)",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 10,
@@ -215,7 +218,7 @@ class PopularFoodTiles extends StatelessWidget {
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('\$' + price,
+                            child: Text('\$' + "34",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -259,100 +262,95 @@ class PopularFoodTitle extends StatelessWidget {
   }
 }
 
-// class PopularFoodItems extends StatelessWidget {
-//   List<dishmodelDishList?>? dishModelList;
-//   PopularFoodItems(this.dishModelList);
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.builder(
-//       itemCount:dishModelList?.length ?? 0,
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//           crossAxisCount: 4),
-//       itemBuilder: (BuildContext context, int index) {
-//         return  PopularFoodTiles(
-//             name: dishModelList![index]?.DishName ?? "",
-//             imageUrl: dishModelList![index]?.ImageURL ?? "",
-//             rating: '4.9',
-//             numberOfRating: '200',
-//             price:  dishModelList![index]?.TotalPrice.toString() ?? "",
-//             slug: "fried_egg");
-//       });
-//   }
-// }
-
-
 class PopularFoodItems extends StatelessWidget {
+  List<dishmodelDishList?>? dishModelList;
+  PopularFoodItems(this.dishModelList);
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(10),
-      crossAxisCount: 3,
-      children: <Widget>[
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: d1,
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularFoodTiles(
-            name: "Mixed Vegetable",
-            imageUrl: d1,
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "17.03",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Salad With Chicken",
-            imageUrl: d1,
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "11.00",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Salad",
-            imageUrl: d1,
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Potato,Meat fry",
-            imageUrl: d1,
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "23.0",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: d1,
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularFoodTiles(
-            name: "Red meat,Salad",
-            imageUrl: d1,
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-      ],
-    );
+    return GridView.builder(
+      itemCount:dishModelList?.length ?? 0,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4),
+      itemBuilder: (BuildContext context, int index) {
+        var model=dishModelList![index];
+        return  PopularFoodTiles(model!);
+      });
   }
 }
+
+
+// class PopularFoodItems extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.count(
+//       primary: false,
+//       padding: const EdgeInsets.all(10),
+//       crossAxisCount: 3,
+//       children: <Widget>[
+//         PopularFoodTiles(
+//             name: "Fried Egg",
+//             imageUrl: d1,
+//             rating: '4.9',
+//             numberOfRating: '200',
+//             price: '15.06',
+//             slug: "fried_egg"),
+//         PopularFoodTiles(
+//             name: "Mixed Vegetable",
+//             imageUrl: d1,
+//             rating: "4.9",
+//             numberOfRating: "100",
+//             price: "17.03",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Salad With Chicken",
+//             imageUrl: d1,
+//             rating: "4.0",
+//             numberOfRating: "50",
+//             price: "11.00",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Mixed Salad",
+//             imageUrl: d1,
+//             rating: "4.00",
+//             numberOfRating: "100",
+//             price: "11.10",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Red meat,Salad",
+//             imageUrl: d1,
+//             rating: "4.6",
+//             numberOfRating: "150",
+//             price: "12.00",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Mixed Salad",
+//             imageUrl: d1,
+//             rating: "4.00",
+//             numberOfRating: "100",
+//             price: "11.10",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Potato,Meat fry",
+//             imageUrl: d1,
+//             rating: "4.2",
+//             numberOfRating: "70",
+//             price: "23.0",
+//             slug: ""),
+//         PopularFoodTiles(
+//             name: "Fried Egg",
+//             imageUrl: d1,
+//             rating: '4.9',
+//             numberOfRating: '200',
+//             price: '15.06',
+//             slug: "fried_egg"),
+//         PopularFoodTiles(
+//             name: "Red meat,Salad",
+//             imageUrl: d1,
+//             rating: "4.6",
+//             numberOfRating: "150",
+//             price: "12.00",
+//             slug: ""),
+//       ],
+//     );
+//   }
+// }

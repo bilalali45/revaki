@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
 
 class TopMenus extends StatefulWidget {
+  SomeRootEntity? callist;
+  final TabController _tabControllertw0;
+
+  TopMenus(this.callist, this._tabControllertw0);
   @override
   _TopMenusState createState() => _TopMenusState();
 }
 
 class _TopMenusState extends State<TopMenus> {
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant TopMenus oldWidget) {
+    super.didUpdateWidget(oldWidget);
+   // _tabController = TabController(initialIndex: 1, vsync: this, length: widget.callist?.FoodCategories.length??0);
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,19 +37,21 @@ class _TopMenusState extends State<TopMenus> {
       height: 60,
       width: double.infinity,
       alignment: Alignment.center,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-        children: <Widget>[
-          TopMenuTiles(name: "Burger", imageUrl: d1, slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl:   d1, slug: ""),
-          TopMenuTiles(name: "Pizza", imageUrl:   d1, slug: ""),
-          TopMenuTiles(name: "Cake", imageUrl: d1, slug: ""),
-          TopMenuTiles(name: "Ice Cream", imageUrl: d1, slug: ""),
-          TopMenuTiles(name: "Soft Drink", imageUrl: d1, slug: ""),
-          TopMenuTiles(name: "Burger", imageUrl: d1, slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: d1, slug: ""),
-        ],
+      child: TabBar(
+        controller:widget._tabControllertw0,
+          indicatorSize: TabBarIndicatorSize.label,
+          isScrollable: false,
+          indicator: BoxDecoration(
+            color: Colors.red,
+          ),
+          tabs:  widget.callist?.FoodCategories.map<Widget>((item) {
+            return  Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(item.CategoryName,
+                  style: TextStyle(
+                      fontSize: 20, color: Colors.black)),
+            );
+          }).toList()??[]
       ),
     );
   }
@@ -71,6 +94,7 @@ class TopMenuTiles extends StatelessWidget {
                           color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w400)),)
+
             ),
           ),
 

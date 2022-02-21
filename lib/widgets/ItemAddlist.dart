@@ -35,13 +35,14 @@ class _ItemAddlist extends State<ItemAddlist> {
       child: Column(
         children: <Widget>[
           ///PopularListItemstitle(),
-          Expanded(
+          Container(
+            height: 280,
             child: ItemAddlistitem(),
           ),
-          Expanded(
+           Container(
+             height: 120,
             child: Additemview(),
-          ),
-
+           ),
           Expanded(
             child: Additembutton(),
           )
@@ -100,7 +101,7 @@ class _PopularListItemsState extends State<PopularListItems> {
 
                             child: Row(
                                 children: <Widget>[
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(6.0),
                                     child: _addButton(onTap: (){
@@ -110,28 +111,40 @@ class _PopularListItemsState extends State<PopularListItems> {
                                       });
                                     }),
                                   ),
-
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(6.0),
                                     child:_itemcount(counter),
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(6.0),
                                     child: _minusButton(),
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 10),
                                   Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: _itemsname(widget.item.DishName.toString())
                                   ),
+
+
 
                                   // _MinusButton(),
                                 ]
                             ),
 
                           ),
+
+                          Container(
+                            child: Row(
+                                children: <Widget>[
+                                  Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: _itemamount("Rs 1200")
+                                  )]
+
+                            )
+                          )
 
                         ],
                       ),
@@ -208,6 +221,18 @@ Widget _itemsname(String name) {
   );
 }
 
+
+
+Widget _itemamount(String name) {
+  return Column(
+    children: <Widget>[
+      Text(name)
+    ],
+  );
+}
+
+
+
 Widget _itemcount(int i) {
   return Column(
     children: <Widget>[
@@ -251,7 +276,7 @@ Widget _submitButton(BuildContext context) {
         // showInSnackBar("test",contxt);
       },
       child: Container(
-        height: 80,
+        height: 50,
         width: 300,
         margin: new EdgeInsets.symmetric(horizontal: 20.0),
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -271,7 +296,7 @@ Widget _submitButton(BuildContext context) {
                 colors: [Color(0xff8d8d8d), Color(0xff8d8d8d)])),
         child: Text(
           '0 items = Rs 0',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 15, color: Colors.white),
         ),
       ));
 }
@@ -287,7 +312,7 @@ Widget _submitButton(BuildContext context) {
                       children: <Widget>[
                         Expanded(
                           child: Container(
-                              margin: const EdgeInsets.all(30),
+                              margin: const EdgeInsets.all(10),
                               child : Column(
                                 children: <Widget>[
 
@@ -339,19 +364,19 @@ Widget _submitButton(BuildContext context) {
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text('Subtotal: Rs 0',
                                             style: TextStyle(
-                                                fontSize: 20, color: Colors.black)),
+                                                fontSize: 15, color: Colors.black)),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text('Add Discount',
                                             style: TextStyle(
-                                                fontSize: 20, color: Colors.black)),
+                                                fontSize: 15, color: Colors.black)),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text('Sale tax 13%: Rs',
                                             style: TextStyle(
-                                                fontSize: 20, color: Colors.black)),
+                                                fontSize: 15, color: Colors.black)),
                                       ),
 
                                     ]
@@ -360,8 +385,7 @@ Widget _submitButton(BuildContext context) {
                         )
                       ],
                    )
-
-                )
+                  )
 
              ]
 

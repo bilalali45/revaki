@@ -40,16 +40,15 @@ class _TopMenusState extends State<TopMenus> {
       child: TabBar(
         controller:widget._tabControllertw0,
           indicatorSize: TabBarIndicatorSize.label,
-          isScrollable: false,
+          isScrollable: true,
           indicator: BoxDecoration(
             color: Colors.red,
           ),
           tabs:  widget.callist?.FoodCategories.map<Widget>((item) {
-            return  Padding(
-              padding: const EdgeInsets.all(10.0),
+            return  Container(
               child: Text(item.CategoryName,
                   style: TextStyle(
-                      fontSize: 20, color: Colors.black)),
+                      fontSize: 15, color: Colors.black)),
             );
           }).toList()??[]
       ),

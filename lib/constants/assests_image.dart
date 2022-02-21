@@ -9,6 +9,10 @@ final String addp = _getImagePath("one.png");
 final String minusp = _getImagePath("two.png");
 
 
+final String kitchenpic = _getImagePath("kitchenpic.png");
+final String kitchen2pic = _getImagePath("kitch2.png");
+final String printerpic = _getImagePath("printerpic.png");
+
 final List<dishmodelDishList?> GlobaldishModelList = List.empty(growable: true);
 
 

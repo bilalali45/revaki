@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/dishmodel.dart';
+import '../constants/assests_image.dart';
 
 class ItemAddlist extends StatefulWidget {
  // final List<dishmodelDishList?>? dishModelList;
@@ -40,120 +40,26 @@ class _ItemAddlist extends State<ItemAddlist> {
           ),
           Expanded(
             child: Additemview(),
+          ),
+
+          Expanded(
+            child: Additembutton(),
           )
+
         ],
       ),
     );
   }
 }
 
-/*class PopularListItems extends StatelessWidget {
-  String name;
-  String imageUrl;
-  String rating;
-  String numberOfRating;
-  String price;
-  String slug;
-
-  PopularListItems(
-      {@required  Key? key,
-        required this.name,
-        required this.imageUrl,
-        required this.rating,
-        required this.numberOfRating,
-        required this.price,
-        required this.slug})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
-      },
-      child: Column(
-         children: <Widget>[
-            Container(
-             padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-              decoration: BoxDecoration(boxShadow: [
-              ]),
-            child: Card(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5.0),
-                  ),
-                ),
-                 child: Container(
-                   width: MediaQuery.of(context).size.width,
-                   height: 80,
-                   child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-
-                            child: Row(
-                                children: <Widget>[
-                                  SizedBox(height: 20),
-                                   Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                     child: _addButton(),
-                                    ),
-
-                                  SizedBox(height: 20),
-                                  Padding(
-                                       padding: const EdgeInsets.all(6.0),
-                                        child:_itemcount(0),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Padding(
-                                       padding: const EdgeInsets.all(6.0),
-                                        child: _minusButton(),
-                                  ),
-                                  SizedBox(height: 20),
-                                    Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                         child: _itemsname(name)
-                                    ),
-
-                                  // _MinusButton(),
-                                ]
-                            ),
-
-                          ),
-
-                        ],
-                      ),
-
-                    ],
-                  ),
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-}*/
-
-
 class PopularListItems extends StatefulWidget {
-  final String name;
-  final String imageUrl;
-  final String rating;
-  final String numberOfRating;
-  final String price;
-  final String slug;
 
-  const PopularListItems(
-      {@required  Key? key,
-        required this.name,
-        required this.imageUrl,
-        required this.rating,
-        required this.numberOfRating,
-        required this.price,
-        required this.slug})
-      : super(key: key);
+  final dishmodelDishList item;
+  PopularListItems(this.item);
+  // const PopularListItems(
+  //     {@required  Key? key,
+  //      })
+  //     : super(key: key);
 
 
   @override
@@ -218,7 +124,7 @@ class _PopularListItemsState extends State<PopularListItems> {
                                   SizedBox(height: 20),
                                   Padding(
                                       padding: const EdgeInsets.all(6.0),
-                                      child: _itemsname(widget.name)
+                                      child: _itemsname(widget.item.DishName.toString())
                                   ),
 
                                   // _MinusButton(),
@@ -319,14 +225,56 @@ Widget _minusButton() {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),),
-        child: Image.asset(
-          minusp,
+          child: Image.asset(
+            minusp,
+          ),
+      ));
+}
+class Additembutton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Row(
+            children: <Widget>[
+               _submitButton(context)
+            ]
+        )
+    );
+  }
+
+}
+Widget _submitButton(BuildContext context) {
+
+  return GestureDetector(
+      onTap: () {
+        // MaterialPageRoute(builder: (context) => HomePage());
+        // showInSnackBar("test",contxt);
+      },
+      child: Container(
+        height: 80,
+        width: 300,
+        margin: new EdgeInsets.symmetric(horizontal: 20.0),
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xff8d8d8d), Color(0xff8d8d8d)])),
+        child: Text(
+          '0 items = Rs 0',
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ));
 }
-
-
-
   class Additemview extends StatelessWidget {
     @override
      Widget build(BuildContext context) {
@@ -345,26 +293,26 @@ Widget _minusButton() {
 
                                   Container(
                                       child : Row(
-                                     children: <Widget>[
-                                       new Padding(
-                                         padding: const EdgeInsets.only(left: 5.0),
-                                         child: new Icon(Icons.delete, size: 50.0),
-                                       ),
-                                       new Padding(
-                                         padding: const EdgeInsets.only(left: 5.0),
-                                         child: new Icon(Icons.edit, size: 50.0),
-                                       ),
-                                       ]
+                                       children: <Widget>[
+                                         new Padding(
+                                           padding:  const EdgeInsets.all(5.0),
+                                           child:Image.asset(printerpic,height: 40),
+                                          ),
+                                         new Padding(
+                                           padding:  const EdgeInsets.all(5.0),
+                                           child:Image.asset(kitchenpic,height: 40),
+                                         ),
+                                     ]
                                    )
 
                                 ),
                                   Container(
                                       child : Row(
                                           children: <Widget>[
-                                            new Padding(
-                                              padding: const EdgeInsets.only(left: 5.0),
-                                              child: new Icon(Icons.delete, size: 50.0),
-                                            ),
+                                          new Padding(
+                                            padding:  const EdgeInsets.all(5.0),
+                                             child:Image.asset(kitchen2pic,height: 40),
+                                          ),
 
                                           ]
                                       )
@@ -429,7 +377,7 @@ class ItemAddlistitem extends StatelessWidget {
       primary: false,
       padding: const EdgeInsets.all(10),
       children:  GlobaldishModelList.map<Widget>((item){
-         return PopularListItemstitle(item!);
+         return PopularListItems(item!);
         }
       ).toList(),
     );

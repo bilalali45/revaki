@@ -77,7 +77,7 @@ class PopularFoodTiles extends StatelessWidget {
                 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 150,
+                  height: 130,
                   child: Column(
                     children: <Widget>[
                       Stack(
@@ -101,19 +101,15 @@ class PopularFoodTiles extends StatelessWidget {
                                         offset: Offset(0.0, 0.75),
                                       ),
                                     ]),
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: Color(0xFFfb3132),
-                                  size: 16,
-                                ),
+
                               ),
                             ),
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(model.ImageURL!!,
-                                    height: 100,
+                                child: Image.network(model.ImageURL!!,
+                                    height: 70,
                                     fit: BoxFit.cover, width: double.infinity,
 
                             )),
@@ -129,7 +125,7 @@ class PopularFoodTiles extends StatelessWidget {
                             child: Text(model.DishName!!,
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w500)),
                           ),
                           // Container(
@@ -163,62 +159,22 @@ class PopularFoodTiles extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text("2",
-                                    style: TextStyle(
-                                        color: Color(0xFF6e6e71),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 3, left: 5),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFF9b9b9c),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text("223)",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
+                              // Container(
+                              //   alignment: Alignment.topLeft,
+                              //   padding: EdgeInsets.only(left: 5, top: 5),
+                              //   child: Text("2",
+                              //       style: TextStyle(
+                              //           color: Color(0xFF6e6e71),
+                              //           fontSize: 10,
+                              //           fontWeight: FontWeight.w400)),
+                              // ),
+
                             ],
                           ),
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('\$' + "34",
+                            child: Text('Rs' + " 34",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,

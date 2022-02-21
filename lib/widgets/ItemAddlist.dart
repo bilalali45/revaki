@@ -357,27 +357,43 @@ Widget _submitButton(BuildContext context) {
                           ),
                         ),
                         Expanded(
+
                           child: Container(
-                                child : Column(
-                                    children: <Widget>[
-                                      Padding(
+                              child : Column(
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Padding(
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text('Subtotal: Rs 0',
                                             style: TextStyle(
                                                 fontSize: 15, color: Colors.black)),
                                       ),
-                                      Padding(
+                                    ),
+                                      Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Padding(
                                         padding: const EdgeInsets.all(5.0),
+                                        child: Text('Subtotal: Rs 0',
+                                            style: TextStyle(
+                                                fontSize: 15, color: Colors.black)),
+                                      )),
+                                        Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
                                         child: Text('Add Discount',
                                             style: TextStyle(
                                                 fontSize: 15, color: Colors.black)),
-                                      ),
-                                      Padding(
+                                      )),
+                                      Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Padding(
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text('Sale tax 13%: Rs',
                                             style: TextStyle(
                                                 fontSize: 15, color: Colors.black)),
-                                      ),
+                                      )),
 
                                     ]
                                 )

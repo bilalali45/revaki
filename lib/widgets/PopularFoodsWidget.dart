@@ -226,8 +226,8 @@ class PopularFoodItems extends StatelessWidget {
     return GridView.builder(
       itemCount:dishModelList?.length ?? 0,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4),
-      itemBuilder: (BuildContext context, int index) {
+          crossAxisCount: 3),
+         itemBuilder: (BuildContext context, int index) {
         var model=dishModelList![index];
         return  PopularFoodTiles(model!);
       });

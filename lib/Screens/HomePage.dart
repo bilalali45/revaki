@@ -70,28 +70,64 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     children: const <Widget>[
                       DrawerHeader(
                          decoration: BoxDecoration(
-                         color: Color.fromRGBO(195, 167, 142, 1),
+                           color: Color.fromRGBO(195, 167, 142, 1),
                          ),
                         child: Text(
-                          'Drawer Header',
+                          'Demo_Admin',
                           style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                         ),
                     ),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.message),
-                    title: Text('Messages'),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.account_circle),
-                    title: Text('Profile'),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text('Settings'),
-                  ),
+                      ListTile(
+                        leading: Icon(Icons.message),
+                        title: Text('Home'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.account_circle),
+                        title: Text('Categories'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Dishes'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Transaction'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Shift Summary'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Shift Register'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Day Register'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Void Report'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Settings'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Print Test'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                         title: Text('Print Category Item'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Logout'),
+                      ),
                 ],
               ),
              ),
@@ -107,7 +143,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                    width: MediaQuery.of(context).size.width,
                    child: Column(children: <Widget>[
                      Container(
-                       padding: const EdgeInsets.all(3.0),
                        decoration: BoxDecoration(
                            border: Border.all(color: Colors.grey)),
                        child: BottomAppBar(
@@ -120,27 +155,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                      child: TabBar(
                                        indicatorSize: TabBarIndicatorSize.label,
                                        isScrollable: false,
-                                       indicator: BoxDecoration(
-                                         color: Colors.red,
+                                       indicator: UnderlineTabIndicator(
+                                         borderSide: BorderSide(color: Color(0xff8d8d8d), width: 3.0),
+
                                        ),
                                        tabs: <Widget>[
                                          Padding(
                                            padding: const EdgeInsets.all(10.0),
                                            child: Text('1st Floor',
                                                style: TextStyle(
-                                                   fontSize: 20, color: Colors.black)),
+                                                   fontSize: 20,fontWeight: FontWeight.w700, color: Color(0xff8d8d8d))),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.all(10.0),
                                            child: Text('Delivery',
                                                style: TextStyle(
-                                                   fontSize: 20, color: Colors.black)),
+                                                   fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xff8d8d8d))),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.all(10.0),
                                            child: Text('Take Away',
                                                style: TextStyle(
-                                                   fontSize: 20, color: Colors.black)),
+                                                   fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xff8d8d8d))),
                                          ),
                                        ],
                                        controller: _tabController,
@@ -330,7 +366,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     // });
       Map<String, dynamic?> mapData = {
         "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
-        "Token": "35694B50B4730AAF2A10D8FE8F86B015"
+        "Token": "83AF721A21CCB0EBB7E0D9E60A5B504F"
       };
        response = await _dio.post(
        "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",

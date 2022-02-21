@@ -12,8 +12,6 @@ class TopMenus extends StatefulWidget {
 }
 
 class _TopMenusState extends State<TopMenus> {
-
-
   @override
   void initState() {
     super.initState();
@@ -41,15 +39,22 @@ class _TopMenusState extends State<TopMenus> {
         controller:widget._tabControllertw0,
           indicatorSize: TabBarIndicatorSize.label,
           isScrollable: true,
-          indicator: BoxDecoration(
-            color: Colors.red,
+          indicator:  UnderlineTabIndicator(
+            borderSide: BorderSide(color: Color(0xff8d8d8d), width: 3.0),
+
           ),
-          tabs:  widget.callist?.FoodCategories.map<Widget>((item) {
-            return  Container(
-              child: Text(item.CategoryName,
-                  style: TextStyle(
-                      fontSize: 15, color: Colors.black)),
-            );
+          tabs: widget.callist?.FoodCategories.map<Widget>((item) {
+            return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(item.CategoryName,
+                      style: TextStyle(
+                          fontSize: 15,fontWeight: FontWeight.w700, color: Color(0xff8d8d8d))),
+                );
+
+              // child: Text(item.CategoryName,
+              //     style: TextStyle(
+              //         fontSize: 15, color: Colors.black)),
+
           }).toList()??[]
       ),
     );

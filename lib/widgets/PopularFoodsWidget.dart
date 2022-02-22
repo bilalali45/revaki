@@ -174,7 +174,7 @@ class PopularFoodTiles extends StatelessWidget {
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('Rs' + " 34",
+                            child: Text('Rs ' + model.TotalPrice.toString(),
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,

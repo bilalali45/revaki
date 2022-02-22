@@ -69,7 +69,7 @@ class PopularListItems extends StatefulWidget {
 
 class _PopularListItemsState extends State<PopularListItems> {
 
-  int counter=0;
+  int counter=1;
 
   Widget build(BuildContext context) {
     return InkWell(
@@ -119,7 +119,12 @@ class _PopularListItemsState extends State<PopularListItems> {
                                   SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(6.0),
-                                    child: _minusButton(),
+                                    child: _minusButton(onTap: (){
+                                      setState(() {
+                                        if(counter != 0)
+                                           --counter;
+                                      });
+                                         }),
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
@@ -140,7 +145,7 @@ class _PopularListItemsState extends State<PopularListItems> {
                                 children: <Widget>[
                                   Padding(
                                       padding: const EdgeInsets.all(6.0),
-                                      child: _itemamount("Rs 1200")
+                                      child: _itemamount(counter! * widget.item.TotalPrice!!)
                                   )]
 
                             )
@@ -223,10 +228,10 @@ Widget _itemsname(String name) {
 
 
 
-Widget _itemamount(String name) {
+Widget _itemamount(int amount) {
   return Column(
     children: <Widget>[
-      Text(name)
+      Text(amount.toString())
     ],
   );
 }
@@ -240,10 +245,9 @@ Widget _itemcount(int i) {
     ],
   );
 }
-Widget _minusButton() {
+Widget _minusButton({void Function()? onTap}) {
   return GestureDetector(
-      onTap: () {
-      },
+      onTap: onTap,
       child: Container(
         width: 40,
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -341,7 +345,6 @@ Widget _submitButton(BuildContext context) {
 
                                           ]
                                       )
-
 
                                   ),
                               // Container(

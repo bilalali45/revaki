@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/Screens/HomePage.dart';
@@ -12,6 +13,9 @@ class LoginPage extends StatefulWidget {
 }
   var contxt;
 class _HomePageState extends State<LoginPage> {
+
+  Dio _dio = Dio();
+  Response? response;
   @override
   Widget build(BuildContext context) {
     contxt = context;

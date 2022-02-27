@@ -6,8 +6,8 @@ import 'package:revaki/model/dishmodel.dart';
 import '../constants/assests_image.dart';
 
 class ItemAddlist extends StatefulWidget {
- // final List<dishmodelDishList?>? dishModelList;
- // ItemAddlist(this.dishModelList);
+  // final List<dishmodelDishList?>? dishModelList;
+  // ItemAddlist(this.dishModelList);
 
   @override
   _ItemAddlist createState() => _ItemAddlist();
@@ -30,7 +30,7 @@ class _ItemAddlist extends State<ItemAddlist> {
   @override
   Widget build(BuildContext context) {
     return Container(
-    //  height: MediaQuery.of(context).size.height,
+      //  height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
@@ -39,10 +39,10 @@ class _ItemAddlist extends State<ItemAddlist> {
             height: 280,
             child: ItemAddlistitem(),
           ),
-           Container(
-             height: 120,
+          Container(
+            height: 120,
             child: Additemview(),
-           ),
+          ),
           Expanded(
             child: Additembutton(),
           )
@@ -70,7 +70,6 @@ class PopularListItems extends StatefulWidget {
 class _PopularListItemsState extends State<PopularListItems> {
 
   int counter=1;
-  int totalprices=0;
 
   Widget build(BuildContext context) {
     return InkWell(
@@ -108,7 +107,7 @@ class _PopularListItemsState extends State<PopularListItems> {
                                     child: _addButton(onTap: (){
                                       print("on tap called $counter");
                                       setState(() {
-                                       ++counter;
+                                        ++counter;
                                       });
                                     }),
                                   ),
@@ -120,7 +119,12 @@ class _PopularListItemsState extends State<PopularListItems> {
                                   SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(6.0),
-                                    child: _minusButton(),
+                                    child: _minusButton(onTap: (){
+                                      setState(() {
+                                        if(counter != 0)
+                                          --counter;
+                                      });
+                                    }),
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
@@ -137,16 +141,14 @@ class _PopularListItemsState extends State<PopularListItems> {
                           ),
 
                           Container(
-                            child: Row(
+                              child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: _itemamount(counter! * widget.item.TotalPrice!!)
+                                    )]
 
-                                children: <Widget>[
-                                  Padding(
-
-                                      padding: const EdgeInsets.all(6.0),
-                                      child: _itemamount(counter * widget.item.TotalPrice!!)
-                                  )]
-
-                            )
+                              )
                           )
 
                         ],
@@ -173,19 +175,19 @@ class PopularListItemstitle extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
       child: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
           Container(
-              child: Row(
-                  children: <Widget>[
-                        SizedBox(width: 20),
-                         _addButton(),
-                         SizedBox(width: 20),
-                      // _MinusButton(),
-                        ]
-                    ),
+            child: Row(
+                children: <Widget>[
+                  SizedBox(width: 20),
+                  _addButton(),
+                  SizedBox(width: 20),
+                  // _MinusButton(),
+                ]
+            ),
 
-               ),
+          ),
 
 
 
@@ -195,25 +197,25 @@ class PopularListItemstitle extends StatelessWidget {
     );
   }
 }
-  Widget _addButton({void Function()? onTap}) {
-    return GestureDetector(
+Widget _addButton({void Function()? onTap}) {
+  return GestureDetector(
       onTap: onTap,
-     /*   onTap: () {
+      /*   onTap: () {
         //  _itemcount(9);
         },*/
-        child: Container(
-          width: 30,
-          padding: EdgeInsets.symmetric(vertical: 15),
-          alignment: Alignment.center,
-           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
+      child: Container(
+        width: 30,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
 
-                 ),
-                  child: Image.asset(
-                    addp,
-                  ),
-                 ));
-  }
+        ),
+        child: Image.asset(
+          addp,
+        ),
+      ));
+}
 
 
 Widget _itemsname(String name) {
@@ -226,10 +228,10 @@ Widget _itemsname(String name) {
 
 
 
-Widget _itemamount(int price) {
+Widget _itemamount(int amount) {
   return Column(
     children: <Widget>[
-      Text(price.toString())
+      Text(amount.toString())
     ],
   );
 }
@@ -243,19 +245,18 @@ Widget _itemcount(int i) {
     ],
   );
 }
-Widget _minusButton() {
+Widget _minusButton({void Function()? onTap}) {
   return GestureDetector(
-      onTap: () {
-      },
+      onTap: onTap,
       child: Container(
         width: 40,
         padding: EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),),
-          child: Image.asset(
-            minusp,
-          ),
+        child: Image.asset(
+          minusp,
+        ),
       ));
 }
 class Additembutton extends StatelessWidget {
@@ -264,7 +265,7 @@ class Additembutton extends StatelessWidget {
     return Container(
         child: Row(
             children: <Widget>[
-               _submitButton(context)
+              _submitButton(context)
             ]
         )
     );
@@ -303,63 +304,62 @@ Widget _submitButton(BuildContext context) {
         ),
       ));
 }
-  class Additemview extends StatelessWidget {
-    @override
-     Widget build(BuildContext context) {
-       return Container(
-          child: Column(
-              children: <Widget>[
-                  Container(
-                      color: Colors.white,
-                      child : Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                              margin: const EdgeInsets.all(10),
-                              child : Column(
-                                children: <Widget>[
+class Additemview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+            children: <Widget>[
+              Container(
+                  color: Colors.white,
+                  child : Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                            margin: const EdgeInsets.all(10),
+                            child : Column(
+                              children: <Widget>[
 
-                                  Container(
-                                      child : Row(
-                                       children: <Widget>[
-                                         new Padding(
-                                           padding:  const EdgeInsets.all(5.0),
-                                           child:Image.asset(printerpic,height: 40),
-                                          ),
-                                         new Padding(
-                                           padding:  const EdgeInsets.all(5.0),
-                                           child:Image.asset(kitchenpic,height: 40),
-                                         ),
-                                     ]
-                                   )
-
-                                ),
-                                  Container(
-                                      child : Row(
-                                          children: <Widget>[
+                                Container(
+                                    child : Row(
+                                        children: <Widget>[
                                           new Padding(
                                             padding:  const EdgeInsets.all(5.0),
-                                             child:Image.asset(kitchen2pic,height: 40),
+                                            child:Image.asset(printerpic,height: 40),
+                                          ),
+                                          new Padding(
+                                            padding:  const EdgeInsets.all(5.0),
+                                            child:Image.asset(kitchenpic,height: 40),
+                                          ),
+                                        ]
+                                    )
+
+                                ),
+                                Container(
+                                    child : Row(
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding:  const EdgeInsets.all(5.0),
+                                            child:Image.asset(kitchen2pic,height: 40),
                                           ),
 
-                                          ]
-                                      )
+                                        ]
+                                    )
 
+                                ),
+                                // Container(
+                                //   color: Colors.orange,
+                                //   child: FlutterLogo(
+                                //     size: 60.0,
+                                //   ),
+                                // ),
 
-                                  ),
-                              // Container(
-                              //   color: Colors.orange,
-                              //   child: FlutterLogo(
-                              //     size: 60.0,
-                              //   ),
-                              // ),
+                              ],
 
-                            ],
-
-                           )
-                          ),
+                            )
                         ),
-                        Expanded(
+                      ),
+                      Expanded(
 
                           child: Container(
                               child : Column(
@@ -373,45 +373,45 @@ Widget _submitButton(BuildContext context) {
                                                 fontSize: 15, color: Colors.black)),
                                       ),
                                     ),
-                                      Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Text('Subtotal: Rs 0',
-                                            style: TextStyle(
-                                                fontSize: 15, color: Colors.black)),
-                                      )),
-                                        Align(
+                                    Align(
                                         alignment: Alignment.centerRight,
                                         child: Padding(
                                           padding: const EdgeInsets.all(5.0),
-                                        child: Text('Add Discount',
-                                            style: TextStyle(
-                                                fontSize: 15, color: Colors.black)),
-                                      )),
-                                      Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Text('Sale tax 13%: Rs',
-                                            style: TextStyle(
-                                                fontSize: 15, color: Colors.black)),
-                                      )),
+                                          child: Text('Subtotal: Rs 0',
+                                              style: TextStyle(
+                                                  fontSize: 15, color: Colors.black)),
+                                        )),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Text('Add Discount',
+                                              style: TextStyle(
+                                                  fontSize: 15, color: Colors.black)),
+                                        )),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Text('Sale tax 13%: Rs',
+                                              style: TextStyle(
+                                                  fontSize: 15, color: Colors.black)),
+                                        )),
 
-                                    ]
-                                )
-                            )
-                        )
-                      ],
-                   )
+                                  ]
+                              )
+                          )
+                      )
+                    ],
                   )
+              )
 
-             ]
+            ]
 
         )
-      );
-    }
+    );
   }
+}
 
 class ItemAddlistitem extends StatelessWidget {
   @override
@@ -420,8 +420,8 @@ class ItemAddlistitem extends StatelessWidget {
       primary: false,
       padding: const EdgeInsets.all(10),
       children:  GlobaldishModelList.map<Widget>((item){
-         return PopularListItems(item!);
-        }
+        return PopularListItems(item!);
+      }
       ).toList(),
     );
   }

@@ -1,21 +1,41 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/Screens/HomePage.dart';
 import 'package:revaki/Screens/Verification.dart';
 import 'package:revaki/constants/bezierContainer.dart';
+import 'package:revaki/model/Loginmodel.dart';
+import 'package:dio/dio.dart';
 
 class LoginPage extends StatefulWidget {
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
   var contxt;
+    Dio _dio = Dio();
+    Response? response;
+    Loginmodel? _Loginmodel;
+
+TextEditingController emailController = new TextEditingController();
+TextEditingController passController = new TextEditingController();
+
+
 class _HomePageState extends State<LoginPage> {
 
-  Dio _dio = Dio();
-  Response? response;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     contxt = context;
@@ -61,12 +81,13 @@ class _HomePageState extends State<LoginPage> {
   }
 
 
+
 }
 
 Widget _emailPasswordWidget() {
   return Column(
     children: <Widget>[
-      _entryField("Email id"),
+      _entryFieldemail("Email id"),
       _entryField("Password", isPassword: true),
     ],
   );
@@ -78,10 +99,13 @@ Widget _submitButton() {
       onTap: () {
         // MaterialPageRoute(builder: (context) => HomePage());
         // showInSnackBar("test",contxt);
-        Navigator.push(
-            contxt, MaterialPageRoute(builder: (context) => Verification())
-        );
+        _getData(emailController.text.toString(),passController.text.toString());
 
+
+
+        // Navigator.push(
+        //     contxt, MaterialPageRoute(builder: (context) => Verification())
+        // );
 
       },
       child: Container(
@@ -108,6 +132,59 @@ Widget _submitButton() {
       ));
 }
 
+void _getData(String email, String pass) async {
+  // FormData _formData;
+  // _formData = FormData.fromMap({
+  //   "token"
+  //   ""
+  // });
+  Map<String, dynamic?> mapData = {
+    "Email": email,
+    "Password": pass
+  };
+  response = await _dio.post(
+      "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/login",
+      data: jsonEncode(mapData));
+  _Loginmodel = Loginmodel.fromJson(response?.data);
+  print("Response222:"+response!.data!.toString());
+  showInSnackBar(response!.data!.m,contxt);
+  if(_Loginmodel?.Token != "null"){
+    Navigator.push(
+        contxt, MaterialPageRoute(builder: (context) => Verification())
+    );
+  }
+
+
+}
+
+Widget _entryFieldemail(String title, {bool isPassword = false}) {
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 10),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        TextField(
+            controller: emailController,
+            obscureText: isPassword,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                fillColor: Color(0xfff3f3f4),
+                filled: true))
+      ],
+    ),
+  );
+
+
+}
+
+
 Widget _entryField(String title, {bool isPassword = false}) {
   return Container(
     margin: EdgeInsets.symmetric(vertical: 10),
@@ -122,6 +199,7 @@ Widget _entryField(String title, {bool isPassword = false}) {
           height: 10,
         ),
         TextField(
+            controller: passController,
             obscureText: isPassword,
             decoration: InputDecoration(
                 border: InputBorder.none,
@@ -130,6 +208,8 @@ Widget _entryField(String title, {bool isPassword = false}) {
       ],
     ),
   );
+
+
 }
 
 

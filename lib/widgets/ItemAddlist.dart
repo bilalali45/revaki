@@ -69,7 +69,8 @@ class PopularListItems extends StatefulWidget {
 
 class _PopularListItemsState extends State<PopularListItems> {
 
-  int counter=0;
+  int counter=1;
+  int totalprices=0;
 
   Widget build(BuildContext context) {
     return InkWell(
@@ -137,10 +138,12 @@ class _PopularListItemsState extends State<PopularListItems> {
 
                           Container(
                             child: Row(
+
                                 children: <Widget>[
                                   Padding(
+
                                       padding: const EdgeInsets.all(6.0),
-                                      child: _itemamount("Rs 1200")
+                                      child: _itemamount(counter * widget.item.TotalPrice!!)
                                   )]
 
                             )
@@ -223,10 +226,10 @@ Widget _itemsname(String name) {
 
 
 
-Widget _itemamount(String name) {
+Widget _itemamount(int price) {
   return Column(
     children: <Widget>[
-      Text(name)
+      Text(price.toString())
     ],
   );
 }

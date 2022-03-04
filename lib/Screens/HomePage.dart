@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
 import 'package:revaki/widgets/Alldataset.dart';
 import 'package:revaki/widgets/BottomNavBarWidget.dart';
@@ -13,13 +14,14 @@ import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
 import 'package:revaki/model/dishmodel.dart';
 
+
 class HomePage extends StatefulWidget {
 
   @override
   // TODO: implement key
   Key? key = homekey;
-
-   HomePage({Key? key}) : super(key: key);
+  final Loginmodel loginmodel;
+  HomePage(this.loginmodel,  {Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -365,8 +367,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //   ""
     // });
       Map<String, dynamic?> mapData = {
-        "PlaceId": "2bec1011-305d-4324-91ae-34ff8e589764",
-        "Token": "83AF721A21CCB0EBB7E0D9E60A5B504F"
+        "PlaceId": widget.loginmodel.UserData!.PlaceId,
+        "Token":  widget.loginmodel.UserData!.Token
       };
        response = await _dio.post(
        "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",

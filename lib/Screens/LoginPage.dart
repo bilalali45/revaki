@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/Screens/HomePage.dart';
 import 'package:revaki/Screens/Verification.dart';
+import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/constants/bezierContainer.dart';
-import 'package:revaki/model/Loginmodel.dart';
+import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:dio/dio.dart';
 
 class LoginPage extends StatefulWidget {
@@ -144,15 +146,17 @@ void _getData(String email, String pass) async {
   };
   response = await _dio.post(
       "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/login",
-      data: jsonEncode(mapData));
-  _Loginmodel = Loginmodel.fromJson(response?.data);
-  print("Response222:"+response!.data!.toString());
-  showInSnackBar(response!.data!.m,contxt);
-  if(_Loginmodel?.Token != "null"){
-    Navigator.push(
-        contxt, MaterialPageRoute(builder: (context) => Verification())
-    );
-  }
+       data: jsonEncode(mapData));
+       _Loginmodel = Loginmodel.fromJson(response?.data);
+       print("Response222:"+response!.data!.toString());
+
+    if(_Loginmodel?.StatusCode == StatusCode_Success){
+        Navigator.push(
+            contxt, MaterialPageRoute(builder: (context) => Verification(_Loginmodel!))
+        );
+      }else{
+          showInSnackBar(_Loginmodel!.Message,contxt);
+      }
 
 
 }

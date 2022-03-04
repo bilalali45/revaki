@@ -15,6 +15,9 @@ final String printerpic = _getImagePath("printerpic.png");
 
 final List<dishmodelDishList?> GlobaldishModelList = List.empty(growable: true);
 
+final int StatusCode_Success = 102;
+final int StatusCode_FAILURE = 101;
+final  StatusCode_Save = false;
 
 // https://stackoverflow.com/questions/50186555/how-to-set-margin-for-a-button-in-flutter
 // https://stackoverflow.com/questions/52227846/how-can-i-add-shadow-to-the-widget-in-flutter

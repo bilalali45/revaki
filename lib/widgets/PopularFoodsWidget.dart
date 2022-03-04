@@ -1,12 +1,17 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:revaki/animation/ScaleRoute.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/dishmodel.dart';
 import 'package:revaki/widgets/ItemAddlist.dart';
+import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/widgets/showCustomDialog.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
   final List<dishmodelDishList?>? dishModelList;
+
 
   PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
   @override
@@ -14,6 +19,7 @@ class PopularFoodsWidget extends StatefulWidget {
 }
 
 class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,8 +45,9 @@ class PopularFoodTiles extends StatelessWidget {
   String numberOfRating;
   String price;
   String slug;*/
-
   final dishmodelDishList model;
+
+
 
   PopularFoodTiles(this.model,
       {@required  Key? key})
@@ -49,11 +56,16 @@ class PopularFoodTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        GlobaldishModelList.add(model);
-        if(additemkey.currentState != null)
-           additemkey.currentState!.setState(() {
+        if(StatusCode_Save == false){
+            StatusCode_Save == true;
+            showCustomDialog(context);
+        }else{
+          GlobaldishModelList.add(model);
+          if(additemkey.currentState != null)
+            additemkey.currentState!.setState(() {
+            });
+        }
 
-        });
         //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
       },
       child: Column(

@@ -128,8 +128,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                          title: Text('Print Category Item'),
                       ),
                       ListTile(
+                       // leading: Icon(Icons.settings),
+                        title: Text("Print Category Item"),
+                        leading: GestureDetector(
+                          onTap: () {
+                            // Action 1
+                          },
+                          child: Icon(Icons.shopping_bag)
+                        ),
+                      //  title: Text('Print Category Item'),
+
+
+                      ),
+                      ListTile(
                         leading: Icon(Icons.settings),
-                        title: Text('Logout'),
+                        title: Text(''),
                       ),
                 ],
               ),
@@ -363,8 +376,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         );
   }
 
-
-
+  void onTouch(){
+    print('Home Clicked');
+    Navigator.pop(context);
+  }
+  Widget _text({void Function()? onTap}) {
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          alignment: Alignment.center,
+          child:Text(
+            "Logout",
+          ),
+        ));
+  }
 
   void _getData() async {
     // FormData _formData;

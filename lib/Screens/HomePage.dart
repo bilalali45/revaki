@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                drawer: Drawer(
                  child: ListView(
                     padding: EdgeInsets.zero,
-                    children: const <Widget>[
+                    children:  <Widget>[
                       DrawerHeader(
                          decoration: BoxDecoration(
                            color: Color.fromRGBO(195, 167, 142, 1),

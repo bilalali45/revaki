@@ -34,18 +34,18 @@ void initState() {
   Timer(
   Duration(seconds: 3),
   () =>
-      _getData(context)
-     );
+         _getData(context)
+  );
 
   return MaterialApp(
   title: "MoonLight",
   home: Container(
 
-  decoration:new BoxDecoration(
-  image: new DecorationImage(
-  image: new AssetImage(background),
-  fit: BoxFit.cover,)
-  ),
+   decoration:new BoxDecoration(
+    image: new DecorationImage(
+    image: new AssetImage(background),
+     fit: BoxFit.cover,)
+     ),
   child: Column(
 
   children: const <Widget>[
@@ -81,8 +81,6 @@ void initState() {
   }
 
 void _getData(BuildContext context) async {
-
-
   SharedPreferences pref = await SharedPreferences.getInstance();
   var statuslogin = pref.getBool(SharedLoginstatus);
   if(statuslogin == true) {

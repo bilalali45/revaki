@@ -28,7 +28,6 @@ TextEditingController passController = new TextEditingController();
 
 class _HomePageState extends State<LoginPage> {
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -138,7 +137,7 @@ void _getData(String email, String pass) async {
   //   "token"
   //   ""
   // });
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+
 
   Map<String, dynamic?> mapData = {
     "Email": email,

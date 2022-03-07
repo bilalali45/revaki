@@ -105,9 +105,9 @@ class _Verification extends State<Verification> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => HomePage(widget.usermodel))
-                          );
+                          // Navigator.push(
+                          //     context, MaterialPageRoute(builder: (context) => HomePage(widget.usermodel))
+                          // );
                         },
                         style: ButtonStyle(
                           foregroundColor:

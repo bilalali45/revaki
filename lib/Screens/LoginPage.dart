@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +9,15 @@ import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/constants/bezierContainer.dart';
 import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:dio/dio.dart';
+import 'package:revaki/model/Usermodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-
   const LoginPage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
-  var contxt;
+    var contxt;
     Dio _dio = Dio();
     Response? response;
     Loginmodel? _Loginmodel;
@@ -30,13 +29,12 @@ TextEditingController passController = new TextEditingController();
 class _HomePageState extends State<LoginPage> {
 
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +43,10 @@ class _HomePageState extends State<LoginPage> {
     return WillPopScope(
         onWillPop: () => Future.value(false),
           child : Scaffold(
-          body: Container(
-          height: height,
-          child: Stack(
-          children: [
+           body: Container(
+           height: height,
+           child: Stack(
+           children: [
             Container(
                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: SingleChildScrollView(
@@ -140,6 +138,8 @@ void _getData(String email, String pass) async {
   //   "token"
   //   ""
   // });
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
   Map<String, dynamic?> mapData = {
     "Email": email,
     "Password": pass
@@ -148,12 +148,20 @@ void _getData(String email, String pass) async {
       "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/login",
        data: jsonEncode(mapData));
        _Loginmodel = Loginmodel.fromJson(response?.data);
-       print("Response222:"+response!.data!.toString());
+
 
     if(_Loginmodel?.StatusCode == StatusCode_Success){
-        Navigator.push(
-            contxt, MaterialPageRoute(builder: (context) => Verification(_Loginmodel!))
-        );
+      //final cuisine = response?.data['userdata'] as Js;
+      final encoded = jsonEncode(_Loginmodel?.UserData);
+      print(encoded);
+
+      prefs.setString('userData',encoded);
+           prefs.setBool(SharedLoginstatus, true);
+         var user = Usermodel.fromJson(encoded);
+            Navigator.push(
+                contxt, MaterialPageRoute(builder: (context) => Verification(user!))
+             );
+
       }else{
           showInSnackBar(_Loginmodel!.Message,contxt);
       }
@@ -219,7 +227,7 @@ Widget _entryField(String title, {bool isPassword = false}) {
 
 void showInSnackBar(String value, BuildContext context) {
   final snackBar = SnackBar(
-    content: Text('Yay! A SnackBar!'),
+    content: Text(value),
     action: SnackBarAction(
       label: 'Undo',
       onPressed: () {

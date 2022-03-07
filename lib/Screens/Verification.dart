@@ -1,18 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:revaki/model/LoginmodelUserData.dart';
-
+import 'package:revaki/model/Usermodel.dart';
 import 'HomePage.dart';
 
 
 
 class Verification extends StatefulWidget {
-  final Loginmodel loginmodel;
-  const Verification(this.loginmodel, {Key? key}) : super(key: key);
-
-  @override
+  final Usermodel usermodel;
+  const Verification(this.usermodel, {Key? key}) : super(key: key);
+   @override
   _Verification createState() => _Verification();
+
 }
 
 class _Verification extends State<Verification> {
@@ -107,7 +106,7 @@ class _Verification extends State<Verification> {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => HomePage(widget.loginmodel))
+                              context, MaterialPageRoute(builder: (context) => HomePage(widget.usermodel))
                           );
                         },
                         style: ButtonStyle(

@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
-import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
+import 'package:revaki/model/Usermodel.dart';
 import 'package:revaki/widgets/Alldataset.dart';
 import 'package:revaki/widgets/BottomNavBarWidget.dart';
 import 'package:revaki/widgets/ItemAddlist.dart';
@@ -15,13 +15,14 @@ import 'package:revaki/widgets/TopMenus.dart';
 import 'package:revaki/model/dishmodel.dart';
 
 
+
 class HomePage extends StatefulWidget {
 
   @override
   // TODO: implement key
   Key? key = homekey;
-  final Loginmodel loginmodel;
-  HomePage(this.loginmodel,  {Key? key}) : super(key: key);
+  final Usermodel usermodel;
+  HomePage(this.usermodel,  {Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -298,7 +299,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                      ]
                                                  )
                                              ),
-                                             Container(),Container(),
+                                             Container( child: Column(
+                                                 children: <Widget>[
+                                                   Expanded(child: ItemAddlist(),)
+                                                   // _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
+                                                 ]
+                                             )),Container( child: Column(
+                                                 children: <Widget>[
+                                                   Expanded(child: ItemAddlist(),)
+                                                   // _dishModel != null ? ItemAddlist(_dishModel?.DishList) : CircularProgressIndicator(),
+                                                 ]
+                                             )),
                                            ],),
 
 
@@ -334,17 +345,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                              return PopularFoodsWidget(_dishModel?.DishList,key: UniqueKey(),);
                                            }).toList()??[],),
 
-
-
                                          )
                                        //  Expanded(child: PopularFoodsWidget(_dishModel?.DishList))
 
                                        ])),
 
                              )
-
-
-
 
                            ],
                          ),
@@ -367,8 +373,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //   ""
     // });
       Map<String, dynamic?> mapData = {
-        "PlaceId": widget.loginmodel.UserData!.PlaceId,
-        "Token":  widget.loginmodel.UserData!.Token
+        "PlaceId": widget.usermodel!.PlaceId,
+        "Token":  widget.usermodel!.Token
       };
        response = await _dio.post(
        "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",
@@ -380,7 +386,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
        _dishModel = dishmodel.fromJson(response?.data);
        _catModel = SomeRootEntity.fromJson(responsecat?.data);
       print("Response222:"+response!.data!.toString());
-      print("Responsecat:"+responsecat!.data!.toString());
+       print("Responsecat:"+responsecat!.data!.toString());
        setState(() {});
   }
 

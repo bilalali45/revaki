@@ -138,7 +138,7 @@ void _getData(String email, String pass) async {
   //   ""
   // });
 
-
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   Map<String, dynamic?> mapData = {
     "Email": email,
     "Password": pass

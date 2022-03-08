@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:revaki/Screens/LoginPage.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
 import 'package:revaki/model/Usermodel.dart';
@@ -13,6 +14,7 @@ import 'package:revaki/widgets/PopularFoodsWidget.dart';
 import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
 import 'package:revaki/model/dishmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -22,6 +24,7 @@ class HomePage extends StatefulWidget {
   // TODO: implement key
   Key? key = homekey;
   final Usermodel usermodel;
+
   HomePage(this.usermodel,  {Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
@@ -29,6 +32,9 @@ class HomePage extends StatefulWidget {
 
 final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
 final GlobalKey<_HomePageState> homekey= GlobalKey();
+
+
+
 var contxt;
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Dio _dio = Dio();
@@ -129,9 +135,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       ListTile(
                        // leading: Icon(Icons.settings),
-                        title: Text("Print Category Item"),
+                        title: Text("Logout"),
                         leading: GestureDetector(
                           onTap: () {
+
+                            showAlertDialog(context);
                             // Action 1
                           },
                           child: Icon(Icons.shopping_bag)
@@ -392,6 +400,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void _getData() async {
+    // prefs = await SharedPreferences.getInstance();
+
     // FormData _formData;
     // _formData = FormData.fromMap({
     //   "token"
@@ -418,4 +428,45 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 /*  tyu: 2bec1011-305d-4324-91ae-34ff8e589764
   tyy: 84DEA70E4F1D39F9E777040B17D9CC34*/
 
+}
+showAlertDialog(BuildContext context)  {
+  // set up the buttons
+
+  Widget cancelButton = TextButton(
+    child: Text("Cancel"),
+    onPressed:  () {
+
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("OK"),
+    onPressed:  () async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      Navigator.of(context, rootNavigator: true).pop();
+      prefs.setString('userData',"");
+      prefs.setBool(SharedLoginstatus, false);
+
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => LoginPage()));
+
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Logout"),
+    content: Text("Are You Sure You want to Logout?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

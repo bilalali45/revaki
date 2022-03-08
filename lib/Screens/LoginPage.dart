@@ -156,7 +156,8 @@ void _getData(String email, String pass) async {
 
       prefs.setString('userData',encoded);
            prefs.setBool(SharedLoginstatus, true);
-         var user = Usermodel.fromJson(encoded);
+           var user = Usermodel.fromJson(encoded);
+      print(user);
             Navigator.push(
                 contxt, MaterialPageRoute(builder: (context) => Verification(user!))
              );

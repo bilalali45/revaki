@@ -10,23 +10,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'HomePage.dart';
 
 class SplashScreen extends StatefulWidget {
-
-
   @override
   _SplashScreen createState() => _SplashScreen();
-
-
-
 }
 class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
-
-  @override
+@override
   void initState() {
     super.initState();
     _getData(context);
-  }
-
-
+}
   @override
   Widget build(BuildContext context) {
     Timer(

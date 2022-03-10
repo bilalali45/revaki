@@ -58,7 +58,7 @@ void _shear(String text) {
     if(searchlist.length != 0) {
       Globallistdata = searchlist;
       if (addfooddish.currentState != null)
-        addfooddish.currentState!.setState(() {});
+          addfooddish.currentState!.setState(() {});
     }
 
 }

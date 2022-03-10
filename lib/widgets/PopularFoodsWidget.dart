@@ -14,22 +14,25 @@ import '../constants/assests_image.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
+  @override
+  // TODO: implement key
+  Key? keyss = addfooddish;
 
   final List<dishmodelDishList?>? dishModelList;
   PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
   @override
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
 
-  @override
-  // TODO: implement key
-  Key? keylist = addfooddish;
+
 
 }
-
-
 final GlobalKey<_PopularFoodsWidgetState> addfooddish = GlobalKey();
 
+
+
+
 class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
+
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: addfooddish,
       //height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(

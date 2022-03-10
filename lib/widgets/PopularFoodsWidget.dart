@@ -3,22 +3,42 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:revaki/animation/ScaleRoute.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/dishmodel.dart';
 import 'package:revaki/widgets/ItemAddlist.dart';
 import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/widgets/showCustomDialog.dart';
 
+import '../constants/assests_image.dart';
+
 
 class PopularFoodsWidget extends StatefulWidget {
+
   final List<dishmodelDishList?>? dishModelList;
-
-
   PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
   @override
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
+
+  @override
+  // TODO: implement key
+  Key? keylist = addfooddish;
+
 }
 
+
+final GlobalKey<_PopularFoodsWidgetState> addfooddish = GlobalKey();
+
 class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+      Globallistdata = widget.dishModelList!;
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +49,7 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
         children: <Widget>[
           PopularFoodTitle(),
           Expanded(
-            child: PopularFoodItems(widget.dishModelList),
+            child: PopularFoodItems(Globallistdata),
              // child: PopularFoodItems(),
           )
         ],
@@ -221,7 +241,7 @@ class PopularFoodTitle extends StatelessWidget {
           ),
           Text(
             "See all",
-            style: TextStyle(
+             style: TextStyle(
                 fontSize: 16, color: Colors.blue, fontWeight: FontWeight.w100),
           )
         ],

@@ -14,6 +14,11 @@ final String kitchen2pic = _getImagePath("kitch2.png");
 final String printerpic = _getImagePath("printerpic.png");
 
 final List<dishmodelDishList?> GlobaldishModelList = List.empty(growable: true);
+List<dishmodelDishList?> Globallistdata = List.empty(growable: true);
+List<dishmodelDishList?> searchlist = List.empty(growable: true);
+
+
+
 
 final int StatusCode_Success = 102;
 final int StatusCode_FAILURE = 101;

@@ -7,8 +7,8 @@ import 'HomePage.dart';
 
 
 class Verification extends StatefulWidget {
-  final Usermodel usermodel;
-  const Verification(this.usermodel, {Key? key}) : super(key: key);
+  //final Usermodel usermodel;
+//  const Verification(this.usermodel, {Key? key}) : super(key: key);
    @override
   _Verification createState() => _Verification();
 
@@ -105,9 +105,9 @@ class _Verification extends State<Verification> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //     context, MaterialPageRoute(builder: (context) => HomePage(widget.usermodel))
-                          // );
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => HomePage())
+                          );
                         },
                         style: ButtonStyle(
                           foregroundColor:

@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _tabController = TabController(initialIndex: 0, vsync: this, length: 3);
     _tabControllertwo = TabController(initialIndex: 0, vsync: this, length:10);
 
-    print("dskjfhksajdhfksahfk")
+     print("dskjfhksajdhfksahfk")
 ;    print(myController.productList.value);
   //  _tabControllertwo = TabController(initialIndex: 0, vsync: this, length: _catModel?.FoodCategories.length??0);
   }
@@ -171,6 +171,41 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                  appBar: new AppBar(
                  backgroundColor: Color.fromRGBO(195, 167, 142, 1),
                  title: Text("Home"),
+                   actions: [
+                     Padding(
+                         padding: const EdgeInsets.all(10.0),
+                         child:new IconButton(
+                           icon : new Icon(Icons.download),
+                           onPressed: () =>{},
+                         )
+                     ),
+                     Padding(
+                       padding: const EdgeInsets.all(10.0),
+                       child:new IconButton(
+                           icon : new Icon(Icons.search),
+                          onPressed: () =>{},
+                       )
+                     ),
+                       Padding(
+                           padding: const EdgeInsets.all(10.0),
+                           child:new IconButton(
+                             icon : new Icon(Icons.menu),
+                             onPressed: () => {
+                               DropdownButton<String>(
+                                 items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                   return DropdownMenuItem<String>(
+                                     value: value,
+                                     child: Text(value),
+                                   );
+                                 }).toList(),
+                                 onChanged: (_) {},
+                               )
+                               //_dropdown()
+                             },
+                           )
+                           ),
+                   ],
+
                  leading: new IconButton(
                  icon: new Icon(Icons.menu),
                  onPressed: () => _key.currentState!.openDrawer(),
@@ -458,6 +493,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 /*  tyu: 2bec1011-305d-4324-91ae-34ff8e589764
   tyy: 84DEA70E4F1D39F9E777040B17D9CC34*/
 
+}
+
+_dropdown() {
+  return
+           DropdownButton<String>(
+            isExpanded: true,
+            underline: Container(
+                color:
+                Colors.transparent),
+            hint: Text("New Rcpt"),
+            items: <String>[
+              'A',
+              'B',
+              'C',
+              'D'
+            ].map((String value) {
+              return DropdownMenuItem<
+                  String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (_) {
+
+    },
+  );
 }
 showAlertDialog(BuildContext context)  {
   // set up the buttons

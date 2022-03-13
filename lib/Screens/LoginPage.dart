@@ -164,9 +164,9 @@ void _getData(String email, String pass) async {
      // GetStorage().write("currenuserdata", _Loginmodel);
       //prefs.setString('userDatanext',user);
       print(_Loginmodel);
-            // Navigator.push(
-            //     contxt, MaterialPageRoute(builder: (context) => Verification(user!))
-            //  );
+            Navigator.push(
+                contxt, MaterialPageRoute(builder: (context) => Verification())
+             );
 
       }else{
           showInSnackBar(_Loginmodel!.Message,contxt);

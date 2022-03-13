@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:revaki/Screens/HomePage.dart';
 import 'package:revaki/Screens/Verification.dart';
 import 'package:revaki/constants/assests_image.dart';
@@ -156,11 +157,16 @@ void _getData(String email, String pass) async {
 
       prefs.setString('userData',encoded);
            prefs.setBool(SharedLoginstatus, true);
-           var user = Usermodel.fromJson(encoded);
-      print(user);
-            Navigator.push(
-                contxt, MaterialPageRoute(builder: (context) => Verification(user!))
-             );
+       // var user = Usermodel.fromJson(encoded);
+
+      GetStorage().write("placeid", _Loginmodel?.UserData!.PlaceId.toString());
+      GetStorage().write("token", _Loginmodel?.UserData!.Token);
+     // GetStorage().write("currenuserdata", _Loginmodel);
+      //prefs.setString('userDatanext',user);
+      print(_Loginmodel);
+            // Navigator.push(
+            //     contxt, MaterialPageRoute(builder: (context) => Verification(user!))
+            //  );
 
       }else{
           showInSnackBar(_Loginmodel!.Message,contxt);

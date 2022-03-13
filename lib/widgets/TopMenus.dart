@@ -3,7 +3,9 @@ import 'package:revaki/constants/assests_image.dart';
 import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
 
 class TopMenus extends StatefulWidget {
-  SomeRootEntity? callist;
+  final List<SomeRootEntityFoodCategories?>? callist;
+
+//  SomeRootEntityFoodCategories callist;
   final TabController _tabControllertw0;
 
   TopMenus(this.callist, this._tabControllertw0);
@@ -43,10 +45,10 @@ class _TopMenusState extends State<TopMenus> {
             borderSide: BorderSide(color: Color(0xff8d8d8d), width: 3.0),
 
           ),
-          tabs: widget.callist?.FoodCategories.map<Widget>((item) {
+          tabs: widget.callist?.map<Widget>((item) {
             return Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(item.CategoryName,
+                  child: Text(item!.CategoryName,
                       style: TextStyle(
                           fontSize: 15,fontWeight: FontWeight.w700, color: Color(0xff8d8d8d))),
                 );

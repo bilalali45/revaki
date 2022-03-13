@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revaki/Screens/LoginPage.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/controller/my_controller.dart';
+import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:revaki/model/SomeRootEntityFoodCategories.dart';
 import 'package:revaki/model/Usermodel.dart';
 import 'package:revaki/widgets/Alldataset.dart';
@@ -15,6 +17,7 @@ import 'package:revaki/widgets/SearchWidget.dart';
 import 'package:revaki/widgets/TopMenus.dart';
 import 'package:revaki/model/dishmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 
 
@@ -23,9 +26,9 @@ class HomePage extends StatefulWidget {
   @override
   // TODO: implement key
   Key? key = homekey;
-  final Usermodel usermodel;
+  //final Loginmodel usermodel;
 
-  HomePage(this.usermodel,  {Key? key}) : super(key: key);
+ // HomePage(this.usermodel,  {Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -38,19 +41,26 @@ final GlobalKey<_HomePageState> homekey= GlobalKey();
 var contxt;
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Dio _dio = Dio();
-  Response? response;
-  Response? responsecat;
-  Response? categoryresponse;
+  // Response? response;
+  // Response? responsecat;
+  // Response? categoryresponse;
   dishmodel? _dishModel;
  // SomeRootEntityFoodCategories? _catModel;
   SomeRootEntity? _catModel;
   late TabController _tabController;
   late TabController _tabControllertwo;
+    MyController myController = Get.put(MyController());
+  //MyController myController = Get.find();
   @override
   void initState() {
     super.initState();
-    _getData();
+   // _getData();
+
     _tabController = TabController(initialIndex: 0, vsync: this, length: 3);
+    _tabControllertwo = TabController(initialIndex: 0, vsync: this, length:10);
+
+    print("dskjfhksajdhfksahfk")
+;    print(myController.productList.value);
   //  _tabControllertwo = TabController(initialIndex: 0, vsync: this, length: _catModel?.FoodCategories.length??0);
   }
   
@@ -64,11 +74,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    _tabControllertwo = TabController(initialIndex: 0, vsync: this, length: _catModel?.FoodCategories.length??0);
+
+
+    // _tabControllertwo = TabController(initialIndex: 0, vsync: this, length: myController.catmodel.value.length??0);
     contxt = context;
     return WillPopScope(
         onWillPop: () => Future.value(false),
         child: Container(
+
           color: Colors.white,
            child: Scaffold(
                key: _key,
@@ -344,6 +357,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                              ),
                              Expanded(
                                child: Container(
+
                                    decoration: BoxDecoration(
                                        border: Border.all(color: Colors.grey)),
                                  //  height: MediaQuery.of(context).size.height,
@@ -352,20 +366,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                        mainAxisAlignment:
                                        MainAxisAlignment.center,
                                        children: <Widget>[
-                                         Builder(builder:(con){
 
-                                           return TopMenus(_catModel,_tabControllertwo);
+                                         Builder(builder:(con){
+                                            return
+                                                Obx(() {
+                                                 //  _tabControllertwo = TabController(initialIndex: 0, vsync: this, length: myController.catmodel.value.length??0);
+
+                                                  return TopMenus(myController.catmodel.value, _tabControllertwo);
+                                                });
                                          }),
                                          SearchWidget(),
                                          //_dishModel != null ? PopularFoodsWidget(_dishModel?.DishList) : CircularProgressIndicator(),
                                          //Expanded(child: Container(color: Colors.red,width: 100,))
 
                                          Expanded(
-                                           // child: ItemAddlist(_dishModel?.DishList),
-                                           child: TabBarView(controller: _tabControllertwo,children: _catModel?.FoodCategories.map<Widget>((item){
-                                             return PopularFoodsWidget(_dishModel?.DishList,key: UniqueKey(),);
-                                           }).toList()??[],),
 
+                                           // child: ItemAddlist(_dishModel?.DishList),
+                                           child:
+
+                                           Obx(() {
+                                             return
+
+                                             TabBarView(controller: _tabControllertwo,children:myController.catmodel.value.map<Widget>((item){
+                                           return
+                                             PopularFoodsWidget(
+                                                myController.productList.value,
+                                                key: UniqueKey(),);
+
+                                            // return PopularFoodsWidget(_dishModel?.DishList,key: UniqueKey(),);
+                                           }).toList()??[],);
+                                    })
                                          )
                                        //  Expanded(child: PopularFoodsWidget(_dishModel?.DishList))
 
@@ -399,31 +429,31 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ));
   }
 
-  void _getData() async {
-    // prefs = await SharedPreferences.getInstance();
-
-    // FormData _formData;
-    // _formData = FormData.fromMap({
-    //   "token"
-    //   ""
-    // });
-      Map<String, dynamic?> mapData = {
-        "PlaceId": widget.usermodel!.PlaceId,
-        "Token":  widget.usermodel!.Token
-      };
-       response = await _dio.post(
-       "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",
-        data: jsonEncode(mapData));
-       responsecat = await _dio.post(
-          "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/foodcategorieslist",
-          data: jsonEncode(mapData));
-      //print("Response222:"+response!.data!.toString());
-       _dishModel = dishmodel.fromJson(response?.data);
-       _catModel = SomeRootEntity.fromJson(responsecat?.data);
-      print("Response222:"+response!.data!.toString());
-       print("Responsecat:"+responsecat!.data!.toString());
-       setState(() {});
-  }
+  // void _getData() async {
+  //   // prefs = await SharedPreferences.getInstance();
+  //
+  //   // FormData _formData;
+  //   // _formData = FormData.fromMap({
+  //   //   "token"
+  //   //   ""
+  //   // });
+  //     Map<String, dynamic?> mapData = {
+  //       "PlaceId": widget.usermodel!.PlaceId,
+  //       "Token":  widget.usermodel!.Token
+  //     };
+  //      response = await _dio.post(
+  //      "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/dishlist",
+  //       data: jsonEncode(mapData));
+  //      responsecat = await _dio.post(
+  //         "http://revaki.posapi.com.asp1-101.phx1-1.websitetestlink.com/api/RevakiPOSAPI/foodcategorieslist",
+  //         data: jsonEncode(mapData));
+  //     //print("Response222:"+response!.data!.toString());
+  //      _dishModel = dishmodel.fromJson(response?.data);
+  //      _catModel = SomeRootEntity.fromJson(responsecat?.data);
+  //     print("Response222:"+response!.data!.toString());
+  //      print("Responsecat:"+responsecat!.data!.toString());
+  //      setState(() {});
+  // }
 
 /*  tyu: 2bec1011-305d-4324-91ae-34ff8e589764
   tyy: 84DEA70E4F1D39F9E777040B17D9CC34*/

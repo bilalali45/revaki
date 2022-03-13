@@ -39,6 +39,7 @@ class SomeRootEntity {
   late int StatusCode;
   late  String Message;
 
+
   SomeRootEntity({
     required this.FoodCategories,
     required this.Status,

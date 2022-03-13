@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:revaki/model/dishmodel.dart';
 
 final String imageAssetsRoot = "Images/";
@@ -17,6 +18,7 @@ final List<dishmodelDishList?> GlobaldishModelList = List.empty(growable: true);
 List<dishmodelDishList?> Globallistdata = List.empty(growable: true);
 List<dishmodelDishList?> searchlist = List.empty(growable: true);
 
+late final TabController tabControllerview;
 
 
 

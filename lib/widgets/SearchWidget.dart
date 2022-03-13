@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:revaki/constants/assests_image.dart';
+import 'package:revaki/controller/controllerhonepage.dart';
+import 'package:revaki/controller/my_controller.dart';
 import 'package:revaki/widgets/PopularFoodsWidget.dart';
+import 'package:get/get.dart';
+import 'package:revaki/controller/my_controller.dart';
 
 class SearchWidget extends StatefulWidget {
+
   const SearchWidget({Key? key}) : super(key: key);
   @override
   _SearchWidget createState() => _SearchWidget();
+
+
 }
+MyController myController = Get.put(MyController());
 
 TextEditingController searchtxt = new TextEditingController();
+// final controllerhonepage countController = Get.put(controllerhonepage());
 
 
 class _SearchWidget extends State<SearchWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +46,13 @@ class _SearchWidget extends State<SearchWidget> {
 
             ),
           fillColor: Color(0xFFFAFAFA),
-          suffixIcon: Icon(Icons.sort,color: Color(0xFFfb3132),),
+          // suffixIcon: Icon(Icons.sort,color: Color(0xFFfb3132),),
+
+          suffixIcon: IconButton(
+              icon: new Icon(Icons.sort),
+              color: Color(0xFFfb3132), onPressed: () {
+               _alldata("");
+          }),
           hintStyle: new TextStyle(color: Color(0xFFd0cece), fontSize: 18),
           hintText: "What would your like to buy?",
         ),
@@ -48,17 +64,9 @@ class _SearchWidget extends State<SearchWidget> {
 }
 
 void _shear(String text) {
- // for (var i = 0; i < Globallistdata.length; i++) {
-    for(var item in Globallistdata ){
-       // dishmodelDishList dishList = item
-       if(item!.DishName!.startsWith(text)){
-          searchlist.add(item);
-       }
-    }
-    if(searchlist.length != 0) {
-      Globallistdata = searchlist;
-      if (addfooddish.currentState != null)
-          addfooddish.currentState!.setState(() {});
-    }
+  myController.search(text);
+}
 
+void _alldata(String text) {
+  myController.fetchdata();
 }

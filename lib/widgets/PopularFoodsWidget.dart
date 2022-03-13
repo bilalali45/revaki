@@ -14,25 +14,28 @@ import '../constants/assests_image.dart';
 
 
 class PopularFoodsWidget extends StatefulWidget {
-  @override
-  // TODO: implement key
-  Key? keyss = addfooddish;
+  // @override
+  // // TODO: implement key
+  // Key? keyss = addfooddish;
 
   final List<dishmodelDishList?>? dishModelList;
-  PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
-  @override
+  @override  PopularFoodsWidget(this.dishModelList,{Key? key}):super(key: key);
+
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
 
 
 
 }
-final GlobalKey<_PopularFoodsWidgetState> addfooddish = GlobalKey();
-
-
-
+ GlobalKey<_PopularFoodsWidgetState> addfooddish = GlobalKey();
 
 class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 
+  @override
+  void didUpdateWidget(covariant PopularFoodsWidget oldWidget) {
+    // TODO: implement didUpdateWidget
+    addfooddish = GlobalKey();
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   void initState() {
@@ -46,7 +49,7 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: addfooddish,
+
       //height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -80,16 +83,19 @@ class PopularFoodTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if(StatusCode_Save == false){
-            StatusCode_Save == true;
-            showCustomDialog(context);
-        }else{
+        // if(StatusCode_Save == false){
+        //     StatusCode_Save == true;
+        //     showCustomDialog(context);
+        // }else{
+        //   GlobaldishModelList.add(model);
+        //   if(additemkey.currentState != null)
+        //     additemkey.currentState!.setState(() {
+        //     });
+        // }
           GlobaldishModelList.add(model);
           if(additemkey.currentState != null)
             additemkey.currentState!.setState(() {
             });
-        }
-
         //Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
       },
       child: Column(

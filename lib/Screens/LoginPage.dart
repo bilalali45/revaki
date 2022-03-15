@@ -12,6 +12,7 @@ import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:dio/dio.dart';
 import 'package:revaki/model/Usermodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,10 +29,9 @@ TextEditingController passController = new TextEditingController();
 
 
 class _HomePageState extends State<LoginPage> {
-
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
   }
   // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,6 +39,7 @@ class _HomePageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     contxt = context;
+
     final height = MediaQuery.of(context).size.height;
     return WillPopScope(
         onWillPop: () => Future.value(false),
@@ -47,10 +48,12 @@ class _HomePageState extends State<LoginPage> {
            height: height,
            child: Stack(
            children: [
+
             Container(
                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: SingleChildScrollView(
                     child: Column(
+
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -62,7 +65,7 @@ class _HomePageState extends State<LoginPage> {
                             SizedBox(height: 50),
                            _emailPasswordWidget(),
                             SizedBox(height: 20),
-                           _submitButton(),
+                           _submitButton(context),
 
                         //  _divider(),
                         //  _facebookButton(),
@@ -92,13 +95,34 @@ Widget _emailPasswordWidget() {
     ],
   );
 }
-
-Widget _submitButton() {
+void _onLoading(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: new Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            new CircularProgressIndicator(),
+            new Text("Loading"),
+          ],
+        ),
+      );
+    },
+  );
+  new Future.delayed(new Duration(seconds: 3), () {
+    Navigator.pop(context); //pop dialog
+      LoginPage();
+  });
+}
+Widget _submitButton(BuildContext context) {
 
   return GestureDetector(
       onTap: () {
         // MaterialPageRoute(builder: (context) => HomePage());
         // showInSnackBar("test",contxt);
+        _onLoading(context);
         _getData(emailController.text.toString(),passController.text.toString());
 
 

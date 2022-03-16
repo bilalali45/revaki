@@ -92,7 +92,17 @@ class PopularFoodTiles extends StatelessWidget {
         //     additemkey.currentState!.setState(() {
         //     });
         // }
-          GlobaldishModelList.add(model);
+
+            for(var item in GlobaldishModelList ) {
+              if(item?.DishId != model!.DishId){
+                   GlobaldishModelList.add(model);
+                   break;
+                }
+            }
+
+            if(GlobaldishModelList.length == 0){
+               GlobaldishModelList.add(model);
+             }
           if(additemkey.currentState != null)
             additemkey.currentState!.setState(() {
             });

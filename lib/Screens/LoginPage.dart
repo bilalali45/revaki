@@ -99,7 +99,8 @@ Widget _submitButton() {
       onTap: () {
         // MaterialPageRoute(builder: (context) => HomePage());
         // showInSnackBar("test",contxt);
-        _getData(emailController.text.toString(),passController.text.toString());
+        _onLoading(contxt);
+        _getData(emailController.text.toString(),passController.text.toString(),contxt);
 
 
 
@@ -132,7 +133,44 @@ Widget _submitButton() {
       ));
 }
 
-void _getData(String email, String pass) async {
+
+void _onLoading(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+
+        child: new Row(
+
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+                height: 80,
+                child: new Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: CircularProgressIndicator(),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child:  Text("Loading"),
+                      )
+
+                    ]
+                )
+
+            ),
+
+          ],
+        ),
+      );
+    },
+  );
+}
+
+void _getData(String email, String pass, contxt) async {
   // FormData _formData;
   // _formData = FormData.fromMap({
   //   "token"
@@ -169,7 +207,8 @@ void _getData(String email, String pass) async {
              );
 
       }else{
-          showInSnackBar(_Loginmodel!.Message,contxt);
+         Navigator.of(contxt).pop();
+         showInSnackBar(_Loginmodel!.Message,contxt);
       }
 
 

@@ -12,7 +12,6 @@ import 'package:revaki/model/LoginmodelUserData.dart';
 import 'package:dio/dio.dart';
 import 'package:revaki/model/Usermodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,9 +28,10 @@ TextEditingController passController = new TextEditingController();
 
 
 class _HomePageState extends State<LoginPage> {
+
   @override
   void initState() {
-
+    // TODO: implement initState
     super.initState();
   }
   // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,7 +39,6 @@ class _HomePageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     contxt = context;
-
     final height = MediaQuery.of(context).size.height;
     return WillPopScope(
         onWillPop: () => Future.value(false),
@@ -48,12 +47,10 @@ class _HomePageState extends State<LoginPage> {
            height: height,
            child: Stack(
            children: [
-
             Container(
                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: SingleChildScrollView(
                     child: Column(
-
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -65,7 +62,7 @@ class _HomePageState extends State<LoginPage> {
                             SizedBox(height: 50),
                            _emailPasswordWidget(),
                             SizedBox(height: 20),
-                           _submitButton(context),
+                           _submitButton(),
 
                         //  _divider(),
                         //  _facebookButton(),
@@ -95,35 +92,15 @@ Widget _emailPasswordWidget() {
     ],
   );
 }
-void _onLoading(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: new Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            new CircularProgressIndicator(),
-            new Text("Loading"),
-          ],
-        ),
-      );
-    },
-  );
-  new Future.delayed(new Duration(seconds: 3), () {
-    Navigator.pop(context); //pop dialog
-      LoginPage();
-  });
-}
-Widget _submitButton(BuildContext context) {
+
+Widget _submitButton() {
 
   return GestureDetector(
       onTap: () {
         // MaterialPageRoute(builder: (context) => HomePage());
         // showInSnackBar("test",contxt);
-        _onLoading(context);
-        _getData(emailController.text.toString(),passController.text.toString());
+        _onLoading(contxt);
+        _getData(emailController.text.toString(),passController.text.toString(),contxt);
 
 
 
@@ -156,7 +133,44 @@ Widget _submitButton(BuildContext context) {
       ));
 }
 
-void _getData(String email, String pass) async {
+
+void _onLoading(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+
+        child: new Row(
+
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+                height: 80,
+                child: new Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: CircularProgressIndicator(),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child:  Text("Loading"),
+                      )
+
+                    ]
+                )
+
+            ),
+
+          ],
+        ),
+      );
+    },
+  );
+}
+
+void _getData(String email, String pass, contxt) async {
   // FormData _formData;
   // _formData = FormData.fromMap({
   //   "token"
@@ -193,7 +207,8 @@ void _getData(String email, String pass) async {
              );
 
       }else{
-          showInSnackBar(_Loginmodel!.Message,contxt);
+         Navigator.of(contxt).pop();
+         showInSnackBar(_Loginmodel!.Message,contxt);
       }
 
 
